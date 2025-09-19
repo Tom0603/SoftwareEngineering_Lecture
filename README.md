@@ -94,3 +94,17 @@ In dieser ReadMe sollen die Kernfunktionen der Campus-App erläutert werden und 
 **Frust:** Es gibt keine Schnittstelle zwischen Raumreservierung und Einladungssystem (z. B. Mail/Kalender). Er muss alles doppelt eintragen.
 
 </details>
+
+
+## User Stories
+
+<details>
+<summary>Alle User Stories anzeigen</summary>
+
+1. Lisa, 21, BWL-Studentin, möchte zwischen ihren Vorlesungen spontan einen ruhigen Raum zum Lernen finden. Statt wie bisher durchs Gebäude zu laufen und überall vergeblich nach freien Plätzen zu suchen, wünscht sie sich in der Campus-App einen einfachen „Jetzt frei“-Button. Mit einem Klick soll ihr sofort ein verfügbarer Raum in der Nähe angezeigt werden – inklusive Filtermöglichkeiten nach Größe oder Ausstattung. So kann sie ihre Pausen effizienter nutzen und ohne Umwege direkt anfangen zu lernen.
+
+2. Jonas, 24, Masterstudent in Informatik, arbeitet mit seiner Projektgruppe regelmäßig zusammen. Die Terminfindung über WhatsApp zieht sich bisher endlos hin, weil niemand weiß, wann Räume frei sind. Mit der Campus-App will er wiederkehrende Reservierungen anlegen, zum Beispiel jeden Dienstag von 16 bis 18 Uhr. Die Gruppe erhält automatisch eine Einladung in ihre Kalender, und für alle ist jederzeit klar ersichtlich, wer den Raum gebucht hat. Damit spart sich die Gruppe Abstimmungschaos und kann sich auf die eigentliche Projektarbeit konzentrieren.
+
+3. Miriam, 19, Biologie-Erstsemester, ist neu am Campus und hat noch keine Orientierung in den Gebäuden. Sie landet oft im falschen Raum oder ohne Steckdose für ihren Laptop. Mit der Campus-App soll sie eine übersichtliche Anzeige bekommen, in der alle Räume mit ihrer Lage und Ausstattung dargestellt sind. So sieht sie vorab, ob ein Raum über Steckdosen, Beamer oder Whiteboard verfügt, und ob diese auch tatsächlich funktionieren. Eine Kartenansicht erleichtert zusätzlich die Orientierung, sodass sie sicher und vorbereitet in die richtige Umgebung findet.
+
+</details>
