@@ -1,5 +1,5 @@
 @startuml
-left to right direction
+left to right directio
 actor Guest as g
 package Professional {
   actor Chef as c
