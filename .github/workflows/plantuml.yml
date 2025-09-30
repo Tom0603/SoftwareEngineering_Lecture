@@ -1,23 +1,17 @@
-name: Generate PlantUML Diagrams
-on:
-  push:
-    paths:
-      - "docs/architecture/**.puml"
-
+name: generate plantuml
+on: push
 jobs:
-  plantuml:
+  generate_plantuml:
     runs-on: ubuntu-latest
+    name: plantuml
     steps:
-      - name: Checkout Source
-        uses: actions/checkout@v4
-
-      - name: Get changed UML files
-        id: getfile
-        run: |
-          echo "name=files::$(git diff --name-only HEAD^ HEAD | grep .puml | xargs)" > $GITHUB_OUTPUT
-
-      - name: Generate SVG Diagrams
-        uses: holowinski/plantuml-github-action@main
-        with:
-          args: -v -tsvg ${{steps.getfile.outputs.files}}
-          
+    - name: checkout
+      uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+    - name: plantuml
+      id: plantuml
+      uses: grassedge/generate-plantuml-action@v1.5
+      with:
+        path: docs/
+        message: "Render PlantUML files"
