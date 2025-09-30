@@ -96,26 +96,4 @@ In dieser ReadMe sollen die Kernfunktionen der Campus-App erläutert werden und 
 </details>
 
 
-## User Stories
 
-<details>
-<summary>Alle User Stories anzeigen</summary>
-
-1. Lisa, 21, BWL-Studentin, möchte zwischen ihren Vorlesungen spontan einen ruhigen Raum zum Lernen finden. Statt wie bisher durchs Gebäude zu laufen und überall vergeblich nach freien Plätzen zu suchen, wünscht sie sich in der Campus-App einen einfachen „Jetzt frei“-Button. Mit einem Klick soll ihr sofort ein verfügbarer Raum in der Nähe angezeigt werden – inklusive Filtermöglichkeiten nach Größe oder Ausstattung. So kann sie ihre Pausen effizienter nutzen und ohne Umwege direkt anfangen zu lernen.
-
-2. Jonas, 24, Masterstudent in Informatik, arbeitet mit seiner Projektgruppe regelmäßig zusammen. Die Terminfindung über WhatsApp zieht sich bisher endlos hin, weil niemand weiß, wann Räume frei sind. Mit der Campus-App will er wiederkehrende Reservierungen anlegen, zum Beispiel jeden Dienstag von 16 bis 18 Uhr. Die Gruppe erhält automatisch eine Einladung in ihre Kalender, und für alle ist jederzeit klar ersichtlich, wer den Raum gebucht hat. Damit spart sich die Gruppe Abstimmungschaos und kann sich auf die eigentliche Projektarbeit konzentrieren.
-
-3. Miriam, 19, Biologie-Erstsemester, ist neu am Campus und hat noch keine Orientierung in den Gebäuden. Sie landet oft im falschen Raum oder ohne Steckdose für ihren Laptop. Mit der Campus-App soll sie eine übersichtliche Anzeige bekommen, in der alle Räume mit ihrer Lage und Ausstattung dargestellt sind. So sieht sie vorab, ob ein Raum über Steckdosen, Beamer oder Whiteboard verfügt, und ob diese auch tatsächlich funktionieren. Eine Kartenansicht erleichtert zusätzlich die Orientierung, sodass sie sicher und vorbereitet in die richtige Umgebung findet.
-   
-4. Ahmed, 27, Promotionsstudent Chemie
-Ahmed möchte regelmäßig denselben Seminarraum reservieren, um ungestört an seiner Promotion zu arbeiten. Bisher ist er frustriert, weil Räume kurzfristig blockiert werden, ohne dass er nachvollziehen kann, ob sie wirklich genutzt werden. Mit der Campus-App möchte er eine „regelmäßige Buchung“ einrichten können, die ihm garantiert, dass der Raum zu seinen Wunschzeiten verfügbar ist. Außerdem soll er sehen können, ob der Raum tatsächlich genutzt wird, sodass er seine Arbeitszeit zuverlässig planen kann.
-
-5. Katrin, 22, Pädagogikstudentin
-Katrin sucht nach einem ruhigen Lernraum, in dem sie konzentriert alleine arbeiten kann. Viele Räume sind offiziell frei, aber in der Realität laut und von Gruppen belegt – eine klare Kennzeichnung fehlt bisher. Mit der Campus-App möchte sie die aktuelle Belegung in Echtzeit sehen, inklusive Lautstärke- oder Gruppenkriterien, und gezielt Räume filtern können, in denen ungestörtes Arbeiten möglich ist. So kann sie sich auf ihr Lernen konzentrieren, ohne Zeit mit Suchen oder Störungen zu verlieren.
-
-6. Felix, 20, Maschinenbau
-Felix möchte kurzfristig Räume buchen, um mit Kommilitonen Matheaufgaben zu bearbeiten. Das aktuelle System ist zu umständlich und braucht zu viele Klicks, um einen verfügbaren Raum zu finden. Mit der Campus-App möchte er sofort sehen, welche Räume in seiner Nähe gerade frei sind, und direkt buchen können – idealerweise mit einem „Jetzt frei“-Button und Filteroptionen für Gruppengröße oder Ausstattung. So kann er spontan lernen und Teamarbeit effizient gestalten.
-
-
-
-</details>
