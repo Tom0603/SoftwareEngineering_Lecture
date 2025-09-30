@@ -10,6 +10,7 @@ jobs:
   generate_plantuml:
     runs-on: ubuntu-latest
     name: Render C4 PlantUML
+    permissions: write-all
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
