@@ -29,7 +29,7 @@ Diese Webanwendung ermöglicht es, gefundene herrenlose Gegenstände zu melden. 
 | Antwortzeit / Suche | Seiten sollen innerhalb von 2 Sekunden laden, Suchergebnisse in weniger als 1 Sekunde erscheinen. | 🔴 sehr wichtig |
 | Betriebszeit      | Die Anwendung soll eine Verfügbarkeit von mindestens 95 % pro Monat haben.                     | 🔴 sehr wichtig |
 | Einfache Bedienung| Die Nutzeroberfläche soll klar, selbsterklärend und auch ohne technisches Vorwissen nutzbar sein.| 🟠 wichtig      |
-| Modularer Aufbau  | Das System soll modular entwickelt sein, sodass neue Funktionen einfach ergänzt werden können. | 🟡 mittel       |
+| Modularer Aufbau  | Das System soll modular entwickelt sein, sodass neue Funktionen einfach ergänzt werden können. | 🟠 wichtig        |
 | Fehlerbehandlung  | Fehlerhafte Eingaben oder Systemfehler sollen verständlich abgefangen und dem Nutzer angezeigt werden.| 🔴 sehr wichtig |
 | Barrierefreiheit  | Die Anwendung ist auch für Nutzer mit Einschränkungen (Screenreader, Kontraste) zugänglich.      | 🟠 wichtig      |
 
