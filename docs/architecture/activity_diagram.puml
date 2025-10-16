@@ -14,7 +14,7 @@ start
 :Meldung prüfen und bestätigen;
 :Angaben werden anonym gespeichert;
 :Gegenstand wird systematisch in Datenbank erfasst;
-:Meldung ist öffentlich einsehbar
+:Meldung ist öffentlich einsehbar;
 
 stop
 @enduml
