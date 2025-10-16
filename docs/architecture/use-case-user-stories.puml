@@ -21,7 +21,6 @@ package "Lost & Found System" {
   usecase "Verständliche Fehlermeldung anzeigen" as UC23
   usecase "Exception abfangen & maskieren" as UC24
   usecase "Fehler protokollieren/alerten" as UC25
-  usecase "Fehler-ID bereitstellen" as UC26
 
   usecase "Suchauftrag anlegen" as UC31
   usecase "Benachrichtigungspräferenzen setzen" as UC32
@@ -32,12 +31,28 @@ package "Lost & Found System" {
 }
 
 stud --> UC11
-UC11 --> UC12
-UC11 --> UC13
 UC11 --> UC14
 UC11 ..> UC15
 UC11 --> UC16
+UC11 --> UC21
+UC21 --> UC16
 UC16 --> UC17
+
+stud --> UC31
+UC31 --> UC12
+UC31 --> UC13
+UC31 --> UC14
+UC31 ..> UC15
+UC31 --> UC16
+UC31 --> UC21
+
+stud --> UC32
+stud --> UC33
+UC33 --> UC34
+UC34 --> UC35
+UC35 --> notif
+notif --> UC36
+UC36 --> stud
 
 stud --> UC21
 stud --> UC22
@@ -45,15 +60,6 @@ UC22 --> UC23
 UC22 --> UC24
 UC24 --> UC25
 UC25 --> log
-UC26 ..> UC23
 UC25 --> dev
-
-stud --> UC31
-stud --> UC32
-UC33 --> UC34
-UC34 --> UC35
-UC35 --> notif
-notif --> UC36
-UC36 --> stud
 
 @enduml
