@@ -2,7 +2,7 @@
 
 left to right direction
 
-actor "Student:in" as stud
+actor "Nutzer:in" as stud
 actor "Entwickler:in" as dev
 actor "Logging" as log
 actor "Benachrichtigungsdienst" as notif
@@ -22,9 +22,8 @@ package "Lost & Found System" {
   usecase "Exception abfangen & maskieren" as UC24
   usecase "Fehler protokollieren/alerten" as UC25
 
-  usecase "Suchauftrag anlegen" as UC31
+  usecase "Neue Fundmeldung anlegen" as UC31
   usecase "Benachrichtigungspräferenzen setzen" as UC32
-  usecase "Neue Fundmeldung anlegen" as UC33
   usecase "Matching prüfen" as UC34
   usecase "Benachrichtigung generieren & senden" as UC35
   usecase "Benachrichtigung empfangen & interagieren" as UC36
@@ -35,7 +34,8 @@ UC11 --> UC14
 UC11 ..> UC15
 UC11 --> UC16
 UC11 --> UC21
-UC21 --> UC16
+UC21 --> UC22
+UC22 --> UC16
 UC16 --> UC17
 
 stud --> UC31
@@ -43,16 +43,18 @@ UC31 --> UC12
 UC31 --> UC13
 UC31 --> UC14
 UC31 ..> UC15
-UC31 --> UC16
 UC31 --> UC21
+UC21 --> UC22
+UC22 --> UC16
 
 stud --> UC32
-stud --> UC33
-UC33 --> UC34
 UC34 --> UC35
 UC35 --> notif
 notif --> UC36
 UC36 --> stud
+
+UC16 --> UC34
+UC34 --> UC17
 
 stud --> UC21
 stud --> UC22
