@@ -1,0 +1,59 @@
+@startuml
+
+left to right direction
+
+actor "Student:in" as stud
+actor "Entwickler:in" as dev
+actor "Logging" as log
+actor "Benachrichtigungsdienst" as notif
+
+package "Lost & Found System" {
+  usecase "Verlustmeldung anonym aufgeben" as UC1
+  usecase "Ort angeben" as UC12
+  usecase "Zeit angeben" as UC13
+  usecase "Beschreibung angeben" as UC14
+  usecase "Foto hinzufügen (optional)" as UC15
+  usecase "Meldung speichern" as UC16
+  usecase "Meldung veröffentlichen" as UC17
+
+  usecase "Eingaben validieren (Client)" as UC21
+  usecase "Eingaben validieren (Server)" as UC22
+  usecase "Verständliche Fehlermeldung anzeigen" as UC23
+  usecase "Exception abfangen & maskieren" as UC24
+  usecase "Fehler protokollieren/alerten" as UC25
+  usecase "Fehler-ID bereitstellen" as UC26
+
+  usecase "Suchauftrag anlegen" as UC31
+  usecase "Benachrichtigungspräferenzen setzen" as UC32
+  usecase "Neue Fundmeldung anlegen" as UC33
+  usecase "Matching prüfen" as UC34
+  usecase "Benachrichtigung generieren & senden" as UC35
+  usecase "Benachrichtigung empfangen & interagieren" as UC36
+}
+
+stud --> UC11
+UC11 --> UC12
+UC11 --> UC13
+UC11 --> UC14
+UC11 ..> UC15
+UC11 --> UC16
+UC16 --> UC17
+
+stud --> UC21
+stud --> UC22
+UC22 --> UC23
+UC22 --> UC24
+UC24 --> UC25
+UC25 --> log
+UC26 ..> UC23
+UC25 --> dev
+
+stud --> UC31
+stud --> UC32
+UC33 --> UC34
+UC34 --> UC35
+UC35 --> notif
+notif --> UC36
+UC36 --> stud
+
+@enduml
