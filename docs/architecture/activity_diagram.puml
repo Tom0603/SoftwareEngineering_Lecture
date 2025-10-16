@@ -27,10 +27,10 @@ else (nein)
   :Zurück zur Eingabe;
 endif
 
+:Datenbank-Eintrag erzeugen;
+
 fork
   :Anzeige in "Gefunden/Verloren"-Liste;
-fork again
-  :Datenbank-Eintrag erzeugen;
 fork again
   :Benachrichtigung an Fundbüro/System;
 end fork
