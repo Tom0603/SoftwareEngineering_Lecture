@@ -36,7 +36,8 @@ UC11 --> UC16
 UC11 --> UC21
 UC21 --> UC22
 UC22 --> UC16
-UC16 --> UC17
+UC16 --> UC34
+UC34 --> UC17
 
 stud --> UC31
 UC31 --> UC12
@@ -52,9 +53,6 @@ UC34 --> UC35
 UC35 --> notif
 notif --> UC36
 UC36 --> stud
-
-UC16 --> UC34
-UC34 --> UC17
 
 stud --> UC21
 stud --> UC22
