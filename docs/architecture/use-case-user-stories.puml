@@ -8,58 +8,51 @@ actor "Logging" as log
 actor "Benachrichtigungsdienst" as notif
 
 package "Lost & Found System" {
-  usecase "Verlustmeldung anonym aufgeben" as UC11
-  usecase "Ort angeben" as UC12
-  usecase "Zeit angeben" as UC13
-  usecase "Beschreibung angeben" as UC14
-  usecase "Foto hinzufügen (optional)" as UC15
-  usecase "Meldung speichern" as UC16
-  usecase "Meldung veröffentlichen" as UC17
-
-  usecase "Eingaben validieren (Client)" as UC21
-  usecase "Eingaben validieren (Server)" as UC22
-  usecase "Verständliche Fehlermeldung anzeigen" as UC23
-  usecase "Exception abfangen & maskieren" as UC24
-  usecase "Fehler protokollieren/alerten" as UC25
-
-  usecase "Neue Fundmeldung anlegen" as UC31
-  usecase "Benachrichtigungspräferenzen setzen" as UC32
-  usecase "Matching prüfen" as UC34
-  usecase "Benachrichtigung generieren & senden" as UC35
-  usecase "Benachrichtigung empfangen & interagieren" as UC36
+  usecase "Verlustmeldung anonym aufgeben" as UC1
+  usecase "Ort angeben" as UC2
+  usecase "Zeit angeben" as UC3
+  usecase "Beschreibung angeben" as UC4
+  usecase "Foto hinzufügen (optional)" as UC5
+  usecase "Meldung speichern" as UC6
+  usecase "Meldung veröffentlichen" as UC7
+  usecase "Eingaben validieren (Client)" as UC8
+  usecase "Eingaben validieren (Server)" as UC9
+  usecase "Verständliche Fehlermeldung anzeigen" as UC10
+  usecase "Exception abfangen & maskieren" as UC11
+  usecase "Fehler protokollieren/alerten" as UC12
+  usecase "Neue Fundmeldung anlegen" as UC13
+  usecase "Benachrichtigungspräferenzen setzen" as UC14
+  usecase "Matching prüfen" as UC15
+  usecase "Benachrichtigung generieren & senden" as UC16
+  usecase "Benachrichtigung empfangen & interagieren" as UC17
 }
 
-stud --> UC11
-UC11 --> UC14
-UC11 ..> UC15
-UC11 --> UC16
-UC11 --> UC21
-UC21 --> UC22
-UC22 --> UC16
-UC16 --> UC34
-UC34 --> UC17
+stud --> UC1
+UC1 --> UC4
+UC1 ..> UC5
+UC1 --> UC6
+UC1 --> UC8
+UC8 --> UC9
+UC9 --> UC6
+UC6 --> UC7
+UC7 --> UC15
 
-stud --> UC31
-UC31 --> UC12
-UC31 --> UC13
-UC31 --> UC14
-UC31 ..> UC15
-UC31 --> UC21
-UC21 --> UC22
-UC22 --> UC16
+stud --> UC13
+UC13 --> UC2
+UC13 --> UC3
+UC13 --> UC4
+UC13 ..> UC5
+UC13 --> UC8
 
-stud --> UC32
-UC34 --> UC35
-UC35 --> notif
-notif --> UC36
-UC36 --> stud
-
-stud --> UC21
-stud --> UC22
-UC22 --> UC23
-UC22 --> UC24
-UC24 --> UC25
-UC25 --> log
-UC25 --> dev
+stud --> UC14
+UC15 --> UC16
+UC16 --> notif
+notif --> UC17
+UC17 --> stud
+UC9 --> UC10
+UC9 --> UC11
+UC11 --> UC12
+UC12 --> log
+UC12 --> dev
 
 @enduml
