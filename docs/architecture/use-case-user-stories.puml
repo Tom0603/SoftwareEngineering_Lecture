@@ -9,10 +9,8 @@ actor "Benachrichtigungsdienst" as notif
 
 package "Lost & Found System" {
   usecase "Verlustmeldung anonym aufgeben" as UC1
-  usecase "Ort angeben" as UC2
-  usecase "Zeit angeben" as UC3
-  usecase "Beschreibung angeben" as UC4
-  usecase "Foto hinzufügen (optional)" as UC5
+  usecase "Neue Fundmeldung anlegen" as UC13
+  usecase "Informationen eingeben" as UC2
   usecase "Meldung speichern" as UC6
   usecase "Meldung veröffentlichen" as UC7
   usecase "Eingaben validieren (Client)" as UC8
@@ -20,7 +18,6 @@ package "Lost & Found System" {
   usecase "Verständliche Fehlermeldung anzeigen" as UC10
   usecase "Exception abfangen & maskieren" as UC11
   usecase "Fehler protokollieren/alerten" as UC12
-  usecase "Neue Fundmeldung anlegen" as UC13
   usecase "Benachrichtigungspräferenzen setzen" as UC14
   usecase "Matching prüfen" as UC15
   usecase "Benachrichtigung generieren & senden" as UC16
@@ -28,23 +25,17 @@ package "Lost & Found System" {
 }
 
 stud --> UC1
-UC1 --> UC4
-UC1 ..> UC5
-UC1 --> UC6
-UC1 --> UC8
+stud --> UC13
+stud --> UC14
+
+UC1 --> UC2
+UC13 --> UC2
+UC2 --> UC8
 UC8 --> UC9
 UC9 --> UC6
 UC6 --> UC7
 UC7 --> UC15
 
-stud --> UC13
-UC13 --> UC2
-UC13 --> UC3
-UC13 --> UC4
-UC13 ..> UC5
-UC13 --> UC8
-
-stud --> UC14
 UC15 --> UC16
 UC16 --> notif
 notif --> UC17
