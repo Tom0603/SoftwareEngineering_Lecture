@@ -1,8 +1,17 @@
 @startuml
 title Aktivitätsdiagramm: Anonyme Meldung eines verlorenen Gegenstands
+skinparam activity {
+  BackgroundColor #F0F8FF
+  BorderColor #4682B4
+  ArrowColor #6A5ACD
+}
+skinparam note {
+  BackgroundColor #FFFACD
+  BorderColor #FFD700
+}
 
+|Benutzer|
 start
-
 :App/Webseite öffnen;
 :Option "Verloren melden" auswählen;
 
@@ -11,7 +20,7 @@ fork
 fork again
   :Zeitpunkt des Verlusts wählen;
 fork again
-  :Beschreibung (Text) verfassen;
+  :Beschreibung verfassen;
 fork again
   note right: Optional
   :Foto aufnehmen oder hochladen;
@@ -27,13 +36,16 @@ else (nein)
   :Zurück zur Eingabe;
 endif
 
+|System|
 fork
   :Anzeige in "Gefunden/Verloren"-Liste;
 fork again
   :Datenbank-Eintrag erzeugen;
 fork again
+  |Fundbüro|
   :Benachrichtigung an Fundbüro/System;
 end fork
 
 stop
 @enduml
+
