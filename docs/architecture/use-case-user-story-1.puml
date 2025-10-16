@@ -18,11 +18,10 @@ package "Lost & Found System" {
 
 s --> UC1
 
-UC1 --> UC2 : <<include>>
-UC1 --> UC3 : <<include>>
-UC1 --> UC4 : <<include>>
-UC5 ..> UC1 : <<extend>>
+UC1 --> UC2
+UC1 --> UC3
+UC1 --> UC4
 
-UC1 --> UC6 : <<include>>
-UC6 --> UC7 : <<include>>
+UC1 --> UC6
+UC6 --> UC7
 @enduml
