@@ -1,0 +1,19 @@
+@startuml
+title Aktivitätsdiagramm: Verlorenen Gegenstand anonym melden
+
+start
+
+:App oder Webseite öffnen;
+:Option "Verlorenen Gegenstand melden" wählen;
+
+:Ort eingeben;
+:Zeitpunkt eingeben;
+:Beschreibung eingeben;
+:Foto hinzufügen (optional);
+
+:Meldung prüfen und bestätigen;
+:Angaben werden anonym gespeichert;
+:Gegenstand wird systematisch in Datenbank erfasst;
+
+stop
+@enduml
