@@ -8,7 +8,7 @@ actor "Logging" as log
 actor "Benachrichtigungsdienst" as notif
 
 package "Lost & Found System" {
-  usecase "Verlustmeldung anonym aufgeben" as UC1
+  usecase "Verlustmeldung anonym aufgeben" as UC11
   usecase "Ort angeben" as UC12
   usecase "Zeit angeben" as UC13
   usecase "Beschreibung angeben" as UC14
