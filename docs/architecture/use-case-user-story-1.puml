@@ -1,10 +1,6 @@
 @startuml
 left to right direction
 actor "Student" as s
-note right of s
-  Meldung anonym
-  (keine persönlichen Daten)
-end note
 
 package "Lost & Found System" {
   usecase "Verlustmeldung anonym aufgeben" as UC1
@@ -21,7 +17,7 @@ s --> UC1
 UC1 --> UC2
 UC1 --> UC3
 UC1 --> UC4
-
+UC5 ..> UC1
 UC1 --> UC6
 UC6 --> UC7
 @enduml
