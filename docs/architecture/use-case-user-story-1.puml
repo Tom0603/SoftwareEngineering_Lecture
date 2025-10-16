@@ -1,0 +1,28 @@
+@startuml
+left to right direction
+actor "Student" as s
+note right of s
+  Meldung anonym
+  (keine persönlichen Daten)
+end note
+
+package "Lost & Found System" {
+  usecase "Verlustmeldung anonym aufgeben" as UC1
+  usecase "Ort angeben" as UC2
+  usecase "Zeit angeben" as UC3
+  usecase "Beschreibung angeben" as UC4
+  usecase "Foto hinzufügen (optional)" as UC5
+  usecase "Meldung speichern" as UC6
+  usecase "Meldung auffindbar machen" as UC7
+}
+
+s --> UC1
+
+UC1 --> UC2 : <<include>>
+UC1 --> UC3 : <<include>>
+UC1 --> UC4 : <<include>>
+UC5 ..> UC1 : <<extend>>
+
+UC1 --> UC6 : <<include>>
+UC6 --> UC7 : <<include>>
+@enduml
