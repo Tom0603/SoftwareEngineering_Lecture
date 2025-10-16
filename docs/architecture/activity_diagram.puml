@@ -1,20 +1,39 @@
 @startuml
-title Aktivitätsdiagramm: Verlorenen Gegenstand anonym melden
+title Aktivitätsdiagramm: Anonyme Meldung eines verlorenen Gegenstands
 
 start
 
-:App oder Webseite öffnen;
-:Option "Verlorenen Gegenstand melden" wählen;
+:App/Webseite öffnen;
+:Option "Verloren melden" auswählen;
 
-:Ort eingeben;
-:Zeitpunkt eingeben;
-:Beschreibung eingeben;
-:Foto hinzufügen (optional);
+fork
+  :Ort auswählen oder eingeben;
+fork again
+  :Zeitpunkt des Verlusts wählen;
+fork again
+  :Beschreibung (Text) verfassen;
+fork again
+  note right: Optional
+  :Foto aufnehmen oder hochladen;
+end fork
 
-:Meldung prüfen und bestätigen;
-:Angaben werden anonym gespeichert;
-:Gegenstand wird systematisch in Datenbank erfasst;
-:Meldung ist öffentlich einsehbar;
+:Angaben prüfen (Zusammenfassung anzeigen);
+
+if (Alle Pflichtangaben gemacht?) then (ja)
+  :Meldung absenden;
+  note right: Meldung wird anonym gespeichert
+else (nein)
+  :Hinweis: Fehlende Pflichtfelder;
+  :Zurück zur Eingabe;
+endif
+
+fork
+  :Anzeige in "Gefunden/Verloren"-Liste;
+fork again
+  :Datenbank-Eintrag erzeugen;
+fork again
+  :Benachrichtigung an Fundbüro/System;
+end fork
 
 stop
 @enduml
