@@ -14,3 +14,10 @@ pip3 freeze > requirements.txt
 flask run
 flask run --debug
 ```
+
+## Environment
+Add `.env` file:
+```sh
+SUPABASE_URL={SUPABASE_URL}
+SUPABASE_KEY={SUPABASE_KEY}
+```
