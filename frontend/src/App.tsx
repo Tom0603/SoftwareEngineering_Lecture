@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ItemCard, type Item } from "./components/ItemCard";
 import { ItemDetailsDialog } from "./components/ItemDetailsDialog";
 import { PostItemDialog } from "./components/PostItemDialog";
@@ -31,12 +31,12 @@ const mockItems: Item[] = [
     description:
       "Lost black leather wallet with several credit cards and ID. Last seen near the coffee machine.",
     category: "Accessories",
-    location: "Cafeteria",
-    date: "2025-10-20",
+    room: "Cafeteria",
+    created_at: "2025-10-20",
     image:
       "https://images.unsplash.com/photo-1634511468843-257ab657a87b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "lost",
-    contactInfo: "john.doe@email.com",
+    contact_email: "john.doe@email.com",
   },
   {
     id: "2",
@@ -44,12 +44,12 @@ const mockItems: Item[] = [
     description:
       "Found a silver iPhone 14 Pro near the printer. Clear case with stickers.",
     category: "Electronics",
-    location: "1.OG Kopierraum",
-    date: "2025-10-21",
+    room: "1.OG Kopierraum",
+    created_at: "2025-10-21",
     image:
       "https://images.unsplash.com/photo-1675953935267-e039f13ddd79?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "found",
-    contactInfo: "finder@email.com",
+    contact_email: "finder@email.com",
   },
   {
     id: "3",
@@ -57,12 +57,12 @@ const mockItems: Item[] = [
     description:
       "Lost a set of house keys with a red keychain. Has 4 keys attached including a car key.",
     category: "Keys",
-    location: "B005",
-    date: "2025-10-19",
+    room: "B005",
+    created_at: "2025-10-19",
     image:
       "https://images.unsplash.com/photo-1595944356863-e624f8234e1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "lost",
-    contactInfo: "student@university.edu",
+    contact_email: "student@university.edu",
   },
   {
     id: "4",
@@ -70,12 +70,12 @@ const mockItems: Item[] = [
     description:
       "Found a blue backpack with textbooks and a water bottle in the library area.",
     category: "Bags & Luggage",
-    location: "B013",
-    date: "2025-10-22",
+    room: "B013",
+    created_at: "2025-10-22",
     image:
       "https://images.unsplash.com/photo-1680039211156-66c721b87625?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "found",
-    contactInfo: "librarian@library.org",
+    contact_email: "librarian@library.org",
   },
   {
     id: "5",
@@ -83,12 +83,12 @@ const mockItems: Item[] = [
     description:
       "Lost a silver Seiko wristwatch with metal band. Sentimental value, reward offered.",
     category: "Accessories",
-    location: "A006",
-    date: "2025-10-18",
+    room: "A006",
+    created_at: "2025-10-18",
     image:
       "https://images.unsplash.com/photo-1640416822842-1d1cd0c6b9f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "lost",
-    contactInfo: "owner@email.com",
+    contact_email: "owner@email.com",
   },
   {
     id: "6",
@@ -96,12 +96,12 @@ const mockItems: Item[] = [
     description:
       "Found Ray-Ban sunglasses near the windowsill in the cafeteria. Black frames with case included.",
     category: "Accessories",
-    location: "Cafeteria",
-    date: "2025-10-21",
+    room: "Cafeteria",
+    created_at: "2025-10-21",
     image:
       "https://images.unsplash.com/photo-1760446032400-506ec8963e6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "found",
-    contactInfo: "beachgoer@email.com",
+    contact_email: "beachgoer@email.com",
   },
   {
     id: "7",
@@ -109,12 +109,12 @@ const mockItems: Item[] = [
     description:
       "Lost MacBook Pro 15 inch, silver finish with stickers. Possibly left on a table.",
     category: "Electronics",
-    location: "A105",
-    date: "2025-10-23",
+    room: "A105",
+    created_at: "2025-10-23",
     image:
       "https://images.unsplash.com/photo-1511385348-a52b4a160dc2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "lost",
-    contactInfo: "techuser@email.com",
+    contact_email: "techuser@email.com",
   },
   {
     id: "8",
@@ -122,12 +122,12 @@ const mockItems: Item[] = [
     description:
       "Found friendly golden retriever in the courtyard near the entrance (EG). No collar.",
     category: "Pets",
-    location: "EG",
-    date: "2025-10-22",
+    room: "EG",
+    created_at: "2025-10-22",
     image:
       "https://images.unsplash.com/photo-1659532007275-47f55316818c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "found",
-    contactInfo: "petlover@email.com",
+    contact_email: "petlover@email.com",
   },
   {
     id: "9",
@@ -135,24 +135,24 @@ const mockItems: Item[] = [
     description:
       "Lost engagement ring with diamond stone. Gold band. Extremely sentimental.",
     category: "Jewelry",
-    location: "EG Toilette Damen",
-    date: "2025-10-20",
+    room: "EG Toilette Damen",
+    created_at: "2025-10-20",
     image:
       "https://images.unsplash.com/photo-1673131158657-4404fd1f041a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "lost",
-    contactInfo: "desperate@email.com",
+    contact_email: "desperate@email.com",
   },
   {
     id: "10",
     title: "Black Umbrella",
     description: "Found black umbrella with wooden handle near the staircase.",
     category: "Other",
-    location: "B017",
-    date: "2025-10-19",
+    room: "B017",
+    created_at: "2025-10-19",
     image:
       "https://images.unsplash.com/photo-1523772721666-22ad3c3b6f90?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "found",
-    contactInfo: "commuter@email.com",
+    contact_email: "commuter@email.com",
   },
   {
     id: "11",
@@ -160,12 +160,12 @@ const mockItems: Item[] = [
     description:
       "Lost Sony wireless headphones in black carrying case. Possibly left in a classroom.",
     category: "Electronics",
-    location: "B207",
-    date: "2025-10-21",
+    room: "B207",
+    created_at: "2025-10-21",
     image:
       "https://images.unsplash.com/photo-1707777193615-26732d6b7e20?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "lost",
-    contactInfo: "traveler@email.com",
+    contact_email: "traveler@email.com",
   },
   {
     id: "12",
@@ -173,12 +173,12 @@ const mockItems: Item[] = [
     description:
       "Found passport and travel documents in a folder. Name on passport: Smith. Please contact to verify.",
     category: "Documents",
-    location: "B223",
-    date: "2025-10-23",
+    room: "B223",
+    created_at: "2025-10-23",
     image:
       "https://images.unsplash.com/photo-1613244470042-e69e8ccb303a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "found",
-    contactInfo: "goodsamaritan@email.com",
+    contact_email: "goodsamaritan@email.com",
   },
 ];
 
@@ -195,11 +195,10 @@ export default function App() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-     const loadItems = async () => {
+    const loadItems = async () => {
       const res = await fetch("http://127.0.0.1:5000/listings");
       if (!res.ok) throw new Error("Fehler beim Laden");
 
-      // 👇 Typisiere als Array von Item
       const data: Item[] = await res.json();
       setItems(data);
       setLoading(false);
@@ -228,7 +227,7 @@ export default function App() {
     const matchesSearch =
       item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.location.toLowerCase().includes(searchQuery.toLowerCase());
+      item.room.toLowerCase().includes(searchQuery.toLowerCase());
 
     const matchesCategory =
       selectedCategory === "All Categories" ||
@@ -239,7 +238,7 @@ export default function App() {
     return matchesSearch && matchesCategory && matchesTab;
   });
 
-  if (loading) { 
+  if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <p className="text-gray-500">Loading items...</p>
@@ -278,7 +277,7 @@ export default function App() {
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <Input
-                  placeholder="Search items, locations..."
+                  placeholder="Search items, rooms..."
                   className="pl-10"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}

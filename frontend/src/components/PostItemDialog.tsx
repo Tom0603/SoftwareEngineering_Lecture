@@ -34,9 +34,9 @@ export function PostItemDialog({ open, onClose, type }: PostItemDialogProps) {
     title: "",
     description: "",
     category: "",
-    location: "",
-    date: "",
-    contactInfo: "",
+    room: "",
+    created_at: "",
+    contact_email: "",
   });
 
   const [image, setImage] = useState<File | null>(null);
@@ -51,12 +51,12 @@ export function PostItemDialog({ open, onClose, type }: PostItemDialogProps) {
   };
 
   const toBase64 = (file: File): Promise<string> =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = (error) => reject(error);
-  });
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = (error) => reject(error);
+    });
 
   const removeImage = () => {
     setImage(null);
@@ -70,40 +70,40 @@ export function PostItemDialog({ open, onClose, type }: PostItemDialogProps) {
       !formData.title ||
       !formData.description ||
       !formData.category ||
-      !formData.location ||
-      !formData.date
+      !formData.room ||
+      !formData.created_at
     ) {
       toast.error("Please fill in all required fields");
       return;
     }
 
-let base64Image: string | null = null;
-  if (image) {
-    base64Image = await toBase64(image);
-  }
+    let base64Image: string | null = null;
+    if (image) {
+      base64Image = await toBase64(image);
+    }
 
     const newItem: Item = {
       title: formData.title,
       description: formData.description,
       category: formData.category,
-      location: formData.location,
-      date: formData.date,
+      room: formData.room,
+      created_at: formData.created_at,
       image: imagePreview || null,
       type: type,
-      contactInfo: formData.contactInfo || null,
+      contact_email: formData.contact_email || null,
     };
-    
+
     const res = await fetch("http://127.0.0.1:5000/listings", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json", 
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(newItem), 
+      body: JSON.stringify(newItem),
     });
 
     if (!res.ok) throw new Error("Fehler beim Erstellen des Posts");
 
-    const data: Item = await res.json(); 
+    const data: Item = await res.json();
     //setResponse(data);
     toast.success(`Your ${type} item has been posted successfully!`);
 
@@ -111,9 +111,9 @@ let base64Image: string | null = null;
       title: "",
       description: "",
       category: "",
-      location: "",
-      date: "",
-      contactInfo: "",
+      room: "",
+      created_at: "",
+      contact_email: "",
     });
     setImage(null);
     setImagePreview(null);
@@ -205,7 +205,7 @@ let base64Image: string | null = null;
             )}
           </div>
 
-          {/* CATEGORY + DATE */}
+          {/* CATEGORY + created_at */}
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Label htmlFor="category">Category *</Label>
@@ -230,15 +230,15 @@ let base64Image: string | null = null;
             </div>
 
             <div>
-              <Label htmlFor="date">
-                Date {type === "lost" ? "Lost" : "Found"} *
+              <Label htmlFor="created_at">
+                created_at {type === "lost" ? "Lost" : "Found"} *
               </Label>
               <Input
-                id="date"
-                type="date"
-                value={formData.date}
+                id="created_at"
+                type="created_at"
+                value={formData.created_at}
                 onChange={(e) =>
-                  setFormData({ ...formData, date: e.target.value })
+                  setFormData({ ...formData, created_at: e.target.value })
                 }
                 required
               />
@@ -247,11 +247,11 @@ let base64Image: string | null = null;
 
           {/* ROOM */}
           <div>
-            <Label htmlFor="location">Room *</Label>
+            <Label htmlFor="room">Room *</Label>
             <Select
-              value={formData.location}
+              value={formData.room}
               onValueChange={(value) =>
-                setFormData({ ...formData, location: value })
+                setFormData({ ...formData, room: value })
               }
               required
             >
@@ -275,9 +275,9 @@ let base64Image: string | null = null;
               id="contact"
               type="email"
               placeholder="your.email@example.com"
-              value={formData.contactInfo}
+              value={formData.contact_email}
               onChange={(e) =>
-                setFormData({ ...formData, contactInfo: e.target.value })
+                setFormData({ ...formData, contact_email: e.target.value })
               }
             />
             <p className="text-sm text-gray-500 mt-1">
