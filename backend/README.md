@@ -52,15 +52,15 @@ Format of base64 image: `data:image/png;base64,...`
     ```json
     [
         {
-            "uuid": (str),
-            "type": (str),
-            "created_at": (str),
-            "title": (str),
-            "description": (str),
-            "room": (str),
-            "category": (str),
-            "contact_email": (str | null),
-            "b64_image": (str | null)
+            "uuid": "(str)",
+            "type": "(str)",
+            "created_at": "(str)",
+            "title": "(str)",
+            "description": "(str)",
+            "room": "(str)",
+            "category": "(str)",
+            "contact_email": "(str | null)",
+            "b64_image": "(str | null)"
         },
         ...
     ]
@@ -71,15 +71,15 @@ Format of base64 image: `data:image/png;base64,...`
     JSON response:
     ```json
     {
-        "uuid": (str),
-        "type": (str),
-        "created_at": (str),
-        "title": (str),
-        "description": (str),
-        "room": (str),
-        "category": (str),
-        "contact_email": (str | null),
-        "b64_image": (str | null)
+        "uuid": "(str)",
+        "type": "(str)",
+        "created_at": "(str)",
+        "title": "(str)",
+        "description": "(str)",
+        "room": "(str)",
+        "category": "(str)",
+        "contact_email": "(str | null)",
+        "b64_image": "(str | null)"
     }
     ```
 
@@ -88,14 +88,14 @@ Format of base64 image: `data:image/png;base64,...`
     JSON body (application/json):
     ```json
     {
-        "type": str,
-        "created_at": "YYYY-MM-DD",
-        "title": str,
-        "description": str,
-        "room": str,
-        "category": (str),
-        "contact_email": (str | null),
-        "b64_image": (str | null)        # "data:image/png;base64,...."
+        "type": "(str)",
+        "created_at": "(str) - YYYY-MM-DD"),
+        "title": "(str)",
+        "description": "(str)",
+        "room": "(str)",
+        "category": "(str)",
+        "contact_email": "(str | null)",
+        "image_b64": "(str | null)"
     }
     ```
 
