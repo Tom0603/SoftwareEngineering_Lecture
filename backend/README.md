@@ -61,8 +61,7 @@ Format of base64 image: `data:image/png;base64,...`
             "category": "(str)",
             "contact_email": "(str | null)",
             "b64_image": "(str | null)"
-        },
-        ...
+        }
     ]
     ```
 
@@ -89,7 +88,7 @@ Format of base64 image: `data:image/png;base64,...`
     ```json
     {
         "type": "(str)",
-        "created_at": "(str) - YYYY-MM-DD"),
+        "created_at": "(str) - YYYY-MM-DD",
         "title": "(str)",
         "description": "(str)",
         "room": "(str)",
