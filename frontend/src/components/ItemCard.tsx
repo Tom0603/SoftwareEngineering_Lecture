@@ -11,7 +11,7 @@ export interface Item {
   category: string;
   room: string;
   created_at: string;
-  b64_b64_image: string;
+  b64_image: string;
   type: "lost" | "found";
   contact_email?: string;
 }
@@ -29,7 +29,7 @@ export function ItemCard({ item, onViewDetails }: ItemCardProps) {
     >
       <div className="aspect-[4/3] overflow-hidden bg-gray-100">
         <ImageWithFallback
-          src={item.image}
+          src={item.b64_image}
           alt={item.title}
           className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
         />
