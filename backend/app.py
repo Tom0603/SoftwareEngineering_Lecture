@@ -33,9 +33,9 @@ def get_listings():
             "title": (str),
             "description": (str),
             "room": (str),
-            "category": (str | null),
+            "category": (str),
             "contact_email": (str | null),
-            "b64_image": Optional[str]       # "data:image/png;base64,...", or None if not available
+            "b64_image": (str | null)       # "data:image/png;base64,..."
         },
         ...
     ]
@@ -91,9 +91,9 @@ def get_listing_by_uuid(uuid: str):
         "title": (str),
         "description": (str),
         "room": (str),
-        "category": (str | null),
+        "category": (str),
         "contact_email": (str | null),
-        "b64_image": Optional[str]       # "data:image/png;base64,...", or None if not available
+        "b64_image": (str | null)       # "data:image/png;base64,..."
     },
     """
     
@@ -144,9 +144,9 @@ def create_listing():
         "title": str,
         "description": str,
         "room": str,
-        "category": (str | null),
-        "contact_email": (str | null),  # optional
-        "image_b64": (str | null)        # optional; expected as data URL "data:image/png;base64,...."
+        "category": (str),
+        "contact_email": (str | null),
+        "image_b64": (str | null)        # "data:image/png;base64,...."
     }
 
     Response
@@ -159,7 +159,7 @@ def create_listing():
         "title": (str),
         "description": (str),
         "room": (str),
-        "category": (str | null),
+        "category": (str),
         "contact_email": (str | null)
     }
     """
@@ -175,7 +175,7 @@ def create_listing():
     contact_email: str | None = data_body.get("contact_email")
     image_b64: str | None = data_body.get("image_b64")
 
-    if not any([type, created_at, title, description, room]):
+    if not any([type, created_at, title, description, room, category]):
         return {"error": "Missing required fields"}, 400
 
     try:
@@ -227,7 +227,7 @@ def delete_listing(uuid: str):
 
     Responses
     ---------
-    200 - the deleted listing object:
+    200:
     """
     
     try:
