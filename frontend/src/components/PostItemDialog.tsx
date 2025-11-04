@@ -93,7 +93,7 @@ let base64Image: string | null = null;
       contactInfo: formData.contactInfo || null,
     };
     
-    const res = await fetch("/listings", {
+    const res = await fetch("http://127.0.0.1:5000/listings", {
       method: "POST",
       headers: {
         "Content-Type": "application/json", 

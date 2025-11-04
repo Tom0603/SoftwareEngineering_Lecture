@@ -196,7 +196,7 @@ export default function App() {
 
   useEffect(() => {
      const loadItems = async () => {
-      const res = await fetch("/listings");
+      const res = await fetch("http://127.0.0.1:5000/listings");
       if (!res.ok) throw new Error("Fehler beim Laden");
 
       // 👇 Typisiere als Array von Item
