@@ -15,27 +15,27 @@ supabase: Client = create_client(url, key)
 app: Flask = Flask(__name__)
 
 
-@app.get("/anzeigen")
+@app.get("/listings")
 def get_anzeigen():
     """
-    GET /anzeigen
+    GET /listings
     
-    Fetch all records from the "anzeigen" table and attach according base64-encoded PNG image (if present) for each record.
+    Fetch all records from the "listings" table and attach according base64-encoded PNG image (if present) for each record.
 
     Response
     --------
-    200 - list of anzeigen objects:
+    200 - list of listings objects:
     [
         {
             "uuid": (str),
-            "art": (str),
-            "aufgegeben_am": (str),
-            "titel": (str),
-            "beschreibung": (str),
-            "raum": (str),
-            "kategorie": (str | null),
-            "kontakt_email": (str | null),
-            "b64_bild": Optional[str]       # "data:image/png;base64,...", or None if not available
+            "type": (str),
+            "created_at": (str),
+            "title": (str),
+            "description": (str),
+            "room": (str),
+            "category": (str | null),
+            "contact_email": (str | null),
+            "b64_image": Optional[str]       # "data:image/png;base64,...", or None if not available
         },
         ...
     ]
@@ -43,63 +43,63 @@ def get_anzeigen():
     
     try:
         response_table = (
-            supabase.table("anzeigen")
+            supabase.table("listings")
             .select("*")
             .execute()
         )
         
-        all_anzeigen: list = response_table.data
+        all_listings: list = response_table.data
         
-        for anzeige in all_anzeigen:
-            anzeige["b64_bild"] = None
+        for listing in all_listings:
+            listing["b64_image"] = None
             try:
-                # Download according image and add to anzeige if present
+                # Download according image and add to listing if present
                 image_bin: bytes = (
                     supabase.storage
                     .from_("images")
-                    .download(f"{anzeige['uuid']}.png")
+                    .download(f"{listing['uuid']}.png")
                 )
-                anzeige["b64_bild"] = "data:image/png;base64," + base64.b64encode(image_bin).decode('utf-8')
+                listing["b64_image"] = "data:image/png;base64," + base64.b64encode(image_bin).decode('utf-8')
             except Exception:
                 pass
             
     except Exception:
         return {"error": "Error while trying to read from database"}, 400
 
-    return all_anzeigen, 200
+    return all_listings, 200
 
 
-@app.get("/anzeigen/<uuid>")
+@app.get("/listings/<uuid>")
 def get_anzeige_by_uuid(uuid: str):
     """
-    GET /anzeigen
+    GET /listings
     
-    Fetch specific record from the "anzeigen" table by uuid and attach according base64-encoded PNG image (if present).
+    Fetch specific record from the "listings" table by uuid and attach according base64-encoded PNG image (if present).
     
     Parameters
     ----------
     uuid : str
-        UUID of the anzeige to get.
+        UUID of the listing to get.
 
     Response
     --------
-    200 - anzeige object:
+    200 - listing object:
     {
         "uuid": (str),
-        "art": (str),
-        "aufgegeben_am": (str),
-        "titel": (str),
-        "beschreibung": (str),
-        "raum": (str),
-        "kategorie": (str | null),
-        "kontakt_email": (str | null),
-        "b64_bild": Optional[str]       # "data:image/png;base64,...", or None if not available
+        "type": (str),
+        "created_at": (str),
+        "title": (str),
+        "description": (str),
+        "room": (str),
+        "category": (str | null),
+        "contact_email": (str | null),
+        "b64_image": Optional[str]       # "data:image/png;base64,...", or None if not available
     },
     """
     
     try:
         response_table = (
-            supabase.table("anzeigen")
+            supabase.table("listings")
             .select("*")
             .eq("uuid", uuid)
             .execute()
@@ -108,88 +108,88 @@ def get_anzeige_by_uuid(uuid: str):
         if len(response_table.data) == 0:
             return {"error": "Anzeige does not exist"}, 404
         
-        anzeige: list = response_table.data[0]
-        anzeige["b64_bild"] = None
+        listing: list = response_table.data[0]
+        listing["b64_image"] = None
         
         try:
-            # Download according image and add to anzeige if present
+            # Download according image and add to listing if present
             image_bin: bytes = (
                 supabase.storage
                 .from_("images")
-                .download(f"{anzeige['uuid']}.png")
+                .download(f"{listing['uuid']}.png")
             )
-            anzeige["b64_bild"] = "data:image/png;base64," + base64.b64encode(image_bin).decode('utf-8')
+            listing["b64_image"] = "data:image/png;base64," + base64.b64encode(image_bin).decode('utf-8')
         except Exception:
             pass
         
     except Exception:
         return {"error": "Error while trying to read from database"}, 400
 
-    return anzeige, 200
+    return listing, 200
 
 
-@app.post("/anzeigen")
+@app.post("/listings")
 def create_anzeige():
     """
-    POST /anzeigen
+    POST /listings
     
-    Create a new record in the "anzeigen" table and optionally upload a PNG image to storage.
+    Create a new record in the "listings" table and optionally upload a PNG image to storage.
     `
     Request
     -------
     JSON body (application/json)
     {
-        "art": str,
-        "aufgegeben_am": "YYYY-MM-DD",
-        "titel": str,
-        "beschreibung": str,
-        "raum": str,
-        "kategorie": (str | null),
-        "kontakt_email": (str | null),  # optional
-        "bild_b64": (str | null)        # optional; expected as data URL "data:image/png;base64,...."
+        "type": str,
+        "created_at": "YYYY-MM-DD",
+        "title": str,
+        "description": str,
+        "room": str,
+        "category": (str | null),
+        "contact_email": (str | null),  # optional
+        "image_b64": (str | null)        # optional; expected as data URL "data:image/png;base64,...."
     }
 
     Response
     ---------
-    201 - the newly created anzeige object:
+    201 - the newly created listing object:
     {
         "uuid": (str)
-        "art": (str),
-        "aufgegeben_am": (str),
-        "titel": (str),
-        "beschreibung": (str),
-        "raum": (str),
-        "kategorie": (str | null),
-        "kontakt_email": (str | null)
+        "type": (str),
+        "created_at": (str),
+        "title": (str),
+        "description": (str),
+        "room": (str),
+        "category": (str | null),
+        "contact_email": (str | null)
     }
     """
     
     data_body: dict = request.get_json()
 
-    art: str | None = data_body.get("art")
-    aufgegeben_am: str | None = datetime.strptime(data_body.get("aufgegeben_am"), "%Y-%m-%d").isoformat()
-    titel: str | None = data_body.get("titel")
-    beschreibung: str | None = data_body.get("beschreibung")
-    raum: str | None = data_body.get("raum")
-    kategorie: str | None = data_body.get("kategorie")
-    kontakt_email: str | None = data_body.get("kontakt_email")
-    bild_b64: str | None = data_body.get("bild_b64")
+    type: str | None = data_body.get("type")
+    created_at: str | None = datetime.strptime(data_body.get("created_at"), "%Y-%m-%d").isoformat()
+    title: str | None = data_body.get("title")
+    description: str | None = data_body.get("description")
+    room: str | None = data_body.get("room")
+    category: str | None = data_body.get("category")
+    contact_email: str | None = data_body.get("contact_email")
+    image_b64: str | None = data_body.get("image_b64")
 
-    if not any([art, aufgegeben_am, titel, beschreibung, raum]):
+    if not any([type, created_at, title, description, room]):
         return {"error": "Missing required fields"}, 400
 
     try:
-        # Insert new anzeige
+        # Insert new listing
         response_table = (
-            supabase.table("anzeigen")
+            supabase.table("listings")
             .insert({
-                "aufgegeben_am": aufgegeben_am,
-                "art": art,
-                "titel": titel,
-                "beschreibung": beschreibung,
-                "raum": raum,
-                "kategorie": kategorie,
-                "kontakt_email": kontakt_email
+                "created_at": created_at,
+                "type": type,
+                "title": title,
+                "description": description,
+                "room": room,
+                "category": category,
+                "contact_email": contact_email
             })
             .execute()
         )
@@ -199,11 +199,11 @@ def create_anzeige():
     new_anzeige: dict = response_table.data[0]
     
     try:
-        if bild_b64:
+        if image_b64:
             # Upload image to storage with uuid as name
             supabase.storage.from_("images") \
                 .upload(
-                    file=base64.b64decode(bild_b64.split("base64,")[1]),
+                    file=base64.b64decode(image_b64.split("base64,")[1]),
                     path=f"{new_anzeige['uuid']}.png",
                     file_options={"content-type": "image/png"}
                 )
@@ -213,26 +213,26 @@ def create_anzeige():
     return new_anzeige, 201
 
 
-@app.delete("/anzeigen/<uuid>")
+@app.delete("/listings/<uuid>")
 def delete_anzeige(uuid: str):
     """
-    DELETE /anzeigen/<uuid>
+    DELETE /listings/<uuid>
 
-    Delete a single anzeige row by its uuid and remove its associated PNG image from storage (if present).
+    Delete a single listing row by its uuid and remove its associated PNG image from storage (if present).
 
     Parameters
     ----------
     uuid : str
-        UUID of the anzeige to delete.
+        UUID of the listing to delete.
 
     Responses
     ---------
-    200 - the deleted anzeige object:
+    200 - the deleted listing object:
     """
     
     try:
-        # Delete anzeige row from table
-        supabase.table("anzeigen").delete().eq("uuid", uuid).execute()
+        # Delete listing row from table
+        supabase.table("listings").delete().eq("uuid", uuid).execute()
     except Exception:
         return {"error": "Error while trying to delete from database"}, 400
         
