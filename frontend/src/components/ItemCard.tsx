@@ -5,7 +5,7 @@ import { MapPin, Calendar, Eye } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 export interface Item {
-  id: string;
+  uuid: string;
   title: string;
   description: string;
   category: string;

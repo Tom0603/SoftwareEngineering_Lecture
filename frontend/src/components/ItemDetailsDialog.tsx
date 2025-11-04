@@ -26,7 +26,7 @@ export function ItemDetailsDialog({
 
   const handleAction = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:5000/listings/${item.id}`, {
+      const response = await fetch(`http://127.0.0.1:5000/listings/${item.uuid}`, {
         method: "DELETE",
       });
 

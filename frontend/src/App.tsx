@@ -26,7 +26,7 @@ import { categories } from "./types/constants";
 // Mock data for lost and found items
 const mockItems: Item[] = [
   {
-    id: "1",
+    uuid: "1",
     title: "Black Leather Wallet",
     description:
       "Lost black leather wallet with several credit cards and ID. Last seen near the coffee machine.",
@@ -39,7 +39,7 @@ const mockItems: Item[] = [
     contact_email: "john.doe@email.com",
   },
   {
-    id: "2",
+    uuid: "2",
     title: "iPhone 14 Pro",
     description:
       "Found a silver iPhone 14 Pro near the printer. Clear case with stickers.",
@@ -52,7 +52,7 @@ const mockItems: Item[] = [
     contact_email: "finder@email.com",
   },
   {
-    id: "3",
+    uuid: "3",
     title: "Set of House Keys",
     description:
       "Lost a set of house keys with a red keychain. Has 4 keys attached including a car key.",
@@ -65,7 +65,7 @@ const mockItems: Item[] = [
     contact_email: "student@university.edu",
   },
   {
-    id: "4",
+    uuid: "4",
     title: "Blue Backpack",
     description:
       "Found a blue backpack with textbooks and a water bottle in the library area.",
@@ -78,7 +78,7 @@ const mockItems: Item[] = [
     contact_email: "librarian@library.org",
   },
   {
-    id: "5",
+    uuid: "5",
     title: "Silver Wristwatch",
     description:
       "Lost a silver Seiko wristwatch with metal band. Sentimental value, reward offered.",
@@ -91,7 +91,7 @@ const mockItems: Item[] = [
     contact_email: "owner@email.com",
   },
   {
-    id: "6",
+    uuid: "6",
     title: "Designer Sunglasses",
     description:
       "Found Ray-Ban sunglasses near the windowsill in the cafeteria. Black frames with case included.",
@@ -104,7 +104,7 @@ const mockItems: Item[] = [
     contact_email: "beachgoer@email.com",
   },
   {
-    id: "7",
+    uuid: "7",
     title: "MacBook Pro Laptop",
     description:
       "Lost MacBook Pro 15 inch, silver finish with stickers. Possibly left on a table.",
@@ -117,7 +117,7 @@ const mockItems: Item[] = [
     contact_email: "techuser@email.com",
   },
   {
-    id: "8",
+    uuid: "8",
     title: "Golden Retriever Dog",
     description:
       "Found friendly golden retriever in the courtyard near the entrance (EG). No collar.",
@@ -130,7 +130,7 @@ const mockItems: Item[] = [
     contact_email: "petlover@email.com",
   },
   {
-    id: "9",
+    uuid: "9",
     title: "Diamond Ring",
     description:
       "Lost engagement ring with diamond stone. Gold band. Extremely sentimental.",
@@ -143,7 +143,7 @@ const mockItems: Item[] = [
     contact_email: "desperate@email.com",
   },
   {
-    id: "10",
+    uuid: "10",
     title: "Black Umbrella",
     description: "Found black umbrella with wooden handle near the staircase.",
     category: "Other",
@@ -155,7 +155,7 @@ const mockItems: Item[] = [
     contact_email: "commuter@email.com",
   },
   {
-    id: "11",
+    uuid: "11",
     title: "Wireless Headphones",
     description:
       "Lost Sony wireless headphones in black carrying case. Possibly left in a classroom.",
@@ -168,7 +168,7 @@ const mockItems: Item[] = [
     contact_email: "traveler@email.com",
   },
   {
-    id: "12",
+    uuid: "12",
     title: "Passport and Documents",
     description:
       "Found passport and travel documents in a folder. Name on passport: Smith. Please contact to verify.",
@@ -327,7 +327,7 @@ export default function App() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredItems.map((item) => (
                   <ItemCard
-                    key={item.id}
+                    key={item.uuid}
                     item={item}
                     onViewDetails={handleViewDetails}
                   />
@@ -347,7 +347,7 @@ export default function App() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredItems.map((item) => (
                   <ItemCard
-                    key={item.id}
+                    key={item.uuid}
                     item={item}
                     onViewDetails={handleViewDetails}
                   />
@@ -367,7 +367,7 @@ export default function App() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredItems.map((item) => (
                   <ItemCard
-                    key={item.id}
+                    key={item.uuid}
                     item={item}
                     onViewDetails={handleViewDetails}
                   />
