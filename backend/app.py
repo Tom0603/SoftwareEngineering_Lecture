@@ -148,7 +148,7 @@ def create_listing():
         "room": str,
         "category": (str),
         "contact_email": (str | null),
-        "image_b64": (str | null)        # "data:image/png;base64,...."
+        "b64_image": (str | null)        # "data:image/png;base64,...."
     }
 
     Response
@@ -175,7 +175,7 @@ def create_listing():
     room: str | None = data_body.get("room")
     category: str | None = data_body.get("category")
     contact_email: str | None = data_body.get("contact_email")
-    image_b64: str | None = data_body.get("image_b64")
+    b64_image: str | None = data_body.get("b64_image")
 
     if not any([type, created_at, title, description, room, category]):
         return {"error": "Missing required fields"}, 400
@@ -201,11 +201,11 @@ def create_listing():
     new_listing: dict = response_table.data[0]
     
     try:
-        if image_b64:
+        if b64_image:
             # Upload image to storage with uuid as name
             supabase.storage.from_("images") \
                 .upload(
-                    file=base64.b64decode(image_b64.split("base64,")[1]),
+                    file=base64.b64decode(b64_image.split("base64,")[1]),
                     path=f"{new_listing['uuid']}.png",
                     file_options={"content-type": "image/png"}
                 )

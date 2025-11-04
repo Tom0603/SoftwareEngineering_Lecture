@@ -95,7 +95,7 @@ Format of base64 image: `data:image/png;base64,...`
         "room": str,
         "category": (str),
         "contact_email": (str | null),
-        "image_b64": (str | null)        # "data:image/png;base64,...."
+        "b64_image": (str | null)        # "data:image/png;base64,...."
     }
     ```
 
