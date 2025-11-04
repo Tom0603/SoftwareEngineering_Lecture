@@ -11,7 +11,7 @@ export interface Item {
   category: string;
   room: string;
   created_at: string;
-  image: string;
+  b64_b64_image: string;
   type: "lost" | "found";
   contact_email?: string;
 }

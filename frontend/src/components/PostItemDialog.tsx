@@ -88,7 +88,7 @@ export function PostItemDialog({ open, onClose, type }: PostItemDialogProps) {
       category: formData.category,
       room: formData.room,
       created_at: formData.created_at,
-      image: imagePreview || null,
+      b64_image: b64_imagePreview || null,
       type: type,
       contact_email: formData.contact_email || null,
     };

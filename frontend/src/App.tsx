@@ -33,8 +33,8 @@ const mockItems: Item[] = [
     category: "Accessories",
     room: "Cafeteria",
     created_at: "2025-10-20",
-    image:
-      "https://images.unsplash.com/photo-1634511468843-257ab657a87b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    b64_image:
+      "https://b64_images.unsplash.com/photo-1634511468843-257ab657a87b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "lost",
     contact_email: "john.doe@email.com",
   },
@@ -46,8 +46,8 @@ const mockItems: Item[] = [
     category: "Electronics",
     room: "1.OG Kopierraum",
     created_at: "2025-10-21",
-    image:
-      "https://images.unsplash.com/photo-1675953935267-e039f13ddd79?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    b64_image:
+      "https://b64_images.unsplash.com/photo-1675953935267-e039f13ddd79?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "found",
     contact_email: "finder@email.com",
   },
@@ -59,8 +59,8 @@ const mockItems: Item[] = [
     category: "Keys",
     room: "B005",
     created_at: "2025-10-19",
-    image:
-      "https://images.unsplash.com/photo-1595944356863-e624f8234e1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    b64_image:
+      "https://b64_images.unsplash.com/photo-1595944356863-e624f8234e1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "lost",
     contact_email: "student@university.edu",
   },
@@ -72,8 +72,8 @@ const mockItems: Item[] = [
     category: "Bags & Luggage",
     room: "B013",
     created_at: "2025-10-22",
-    image:
-      "https://images.unsplash.com/photo-1680039211156-66c721b87625?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    b64_image:
+      "https://b64_images.unsplash.com/photo-1680039211156-66c721b87625?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "found",
     contact_email: "librarian@library.org",
   },
@@ -85,8 +85,8 @@ const mockItems: Item[] = [
     category: "Accessories",
     room: "A006",
     created_at: "2025-10-18",
-    image:
-      "https://images.unsplash.com/photo-1640416822842-1d1cd0c6b9f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    b64_image:
+      "https://b64_images.unsplash.com/photo-1640416822842-1d1cd0c6b9f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "lost",
     contact_email: "owner@email.com",
   },
@@ -98,8 +98,8 @@ const mockItems: Item[] = [
     category: "Accessories",
     room: "Cafeteria",
     created_at: "2025-10-21",
-    image:
-      "https://images.unsplash.com/photo-1760446032400-506ec8963e6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    b64_image:
+      "https://b64_images.unsplash.com/photo-1760446032400-506ec8963e6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "found",
     contact_email: "beachgoer@email.com",
   },
@@ -111,8 +111,8 @@ const mockItems: Item[] = [
     category: "Electronics",
     room: "A105",
     created_at: "2025-10-23",
-    image:
-      "https://images.unsplash.com/photo-1511385348-a52b4a160dc2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    b64_image:
+      "https://b64_images.unsplash.com/photo-1511385348-a52b4a160dc2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "lost",
     contact_email: "techuser@email.com",
   },
@@ -124,8 +124,8 @@ const mockItems: Item[] = [
     category: "Pets",
     room: "EG",
     created_at: "2025-10-22",
-    image:
-      "https://images.unsplash.com/photo-1659532007275-47f55316818c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    b64_image:
+      "https://b64_images.unsplash.com/photo-1659532007275-47f55316818c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "found",
     contact_email: "petlover@email.com",
   },
@@ -137,8 +137,8 @@ const mockItems: Item[] = [
     category: "Jewelry",
     room: "EG Toilette Damen",
     created_at: "2025-10-20",
-    image:
-      "https://images.unsplash.com/photo-1673131158657-4404fd1f041a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    b64_image:
+      "https://b64_images.unsplash.com/photo-1673131158657-4404fd1f041a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "lost",
     contact_email: "desperate@email.com",
   },
@@ -149,8 +149,8 @@ const mockItems: Item[] = [
     category: "Other",
     room: "B017",
     created_at: "2025-10-19",
-    image:
-      "https://images.unsplash.com/photo-1523772721666-22ad3c3b6f90?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    b64_image:
+      "https://b64_images.unsplash.com/photo-1523772721666-22ad3c3b6f90?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "found",
     contact_email: "commuter@email.com",
   },
@@ -162,8 +162,8 @@ const mockItems: Item[] = [
     category: "Electronics",
     room: "B207",
     created_at: "2025-10-21",
-    image:
-      "https://images.unsplash.com/photo-1707777193615-26732d6b7e20?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    b64_image:
+      "https://b64_images.unsplash.com/photo-1707777193615-26732d6b7e20?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "lost",
     contact_email: "traveler@email.com",
   },
@@ -175,8 +175,8 @@ const mockItems: Item[] = [
     category: "Documents",
     room: "B223",
     created_at: "2025-10-23",
-    image:
-      "https://images.unsplash.com/photo-1613244470042-e69e8ccb303a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    b64_image:
+      "https://b64_images.unsplash.com/photo-1613244470042-e69e8ccb303a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     type: "found",
     contact_email: "goodsamaritan@email.com",
   },

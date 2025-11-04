@@ -58,7 +58,7 @@ export function ItemDetailsDialog({
         <div className="space-y-4">
           <div className="aspect-video overflow-hidden rounded-lg bg-gray-100">
             <ImageWithFallback
-              src={item.image}
+              src={item.b64_image}
               alt={item.title}
               className="w-full h-full object-cover"
             />
