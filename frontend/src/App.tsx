@@ -205,7 +205,7 @@ export default function App() {
       setLoading(false);
     };
 
-    //loadItems().catch(console.error);
+    loadItems().catch(console.error);
   }, []);
 
   const handleViewDetails = (item: Item) => {
