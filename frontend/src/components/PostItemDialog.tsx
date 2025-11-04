@@ -230,12 +230,12 @@ export function PostItemDialog({ open, onClose, type }: PostItemDialogProps) {
             </div>
 
             <div>
-              <Label htmlFor="created_at">
-                created_at {type === "lost" ? "Lost" : "Found"} *
+              <Label htmlFor="date">
+                Date {type === "lost" ? "Lost" : "Found"} *
               </Label>
               <Input
-                id="created_at"
-                type="created_at"
+                id="date"
+                type="date"
                 value={formData.created_at}
                 onChange={(e) =>
                   setFormData({ ...formData, created_at: e.target.value })
