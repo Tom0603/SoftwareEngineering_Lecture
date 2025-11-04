@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { ItemCard, type Item } from "./components/ItemCard";
 import { ItemDetailsDialog } from "./components/ItemDetailsDialog";
 import { PostItemDialog } from "./components/PostItemDialog";
@@ -192,6 +192,21 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [activeTab, setActiveTab] = useState("all");
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+     const loadItems = async () => {
+      const res = await fetch("/listings");
+      if (!res.ok) throw new Error("Fehler beim Laden");
+
+      // 👇 Typisiere als Array von Item
+      const data: Item[] = await res.json();
+      setItems(data);
+      setLoading(false);
+    };
+
+    //loadItems().catch(console.error);
+  }, []);
 
   const handleViewDetails = (item: Item) => {
     setSelectedItem(item);
@@ -223,6 +238,14 @@ export default function App() {
 
     return matchesSearch && matchesCategory && matchesTab;
   });
+
+  if (loading) { 
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-gray-500">Loading items...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">

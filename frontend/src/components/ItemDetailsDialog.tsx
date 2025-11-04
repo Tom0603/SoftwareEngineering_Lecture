@@ -24,6 +24,24 @@ export function ItemDetailsDialog({
 }: ItemDetailsDialogProps) {
   if (!item) return null;
 
+  const handleAction = async () => {
+    try {
+      const response = await fetch(`/listings/${item.id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to delete item: ${response.statusText}`);
+      }
+
+      console.log(`Anzeige ${item.id} erfolgreich gelöscht.`);
+
+      onClose();
+    } catch (error) {
+      console.error("Fehler beim Löschen:", error);
+    }
+  };
+
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
@@ -86,7 +104,7 @@ export function ItemDetailsDialog({
             )}
 
             <div className="flex gap-2 pt-4">
-              <Button className="flex-1">
+              <Button className="flex-1" onClick={handleAction}>
                 <Check className="w-4 h-4 mr-2" />
                 {item.type === "lost" ? "Return" : "Collect"}
               </Button>

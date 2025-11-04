@@ -21,6 +21,7 @@ import { toast } from "sonner";
 import { Upload, X } from "lucide-react";
 import { rooms } from "../types/constants";
 import { categories } from "../types/constants";
+import { type Item } from "./ItemCard";
 
 interface PostItemDialogProps {
   open: boolean;
@@ -49,12 +50,20 @@ export function PostItemDialog({ open, onClose, type }: PostItemDialogProps) {
     }
   };
 
+  const toBase64 = (file: File): Promise<string> =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = (error) => reject(error);
+  });
+
   const removeImage = () => {
     setImage(null);
     setImagePreview(null);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (
@@ -68,6 +77,34 @@ export function PostItemDialog({ open, onClose, type }: PostItemDialogProps) {
       return;
     }
 
+let base64Image: string | null = null;
+  if (image) {
+    base64Image = await toBase64(image);
+  }
+
+    const newItem: Item = {
+      title: formData.title,
+      description: formData.description,
+      category: formData.category,
+      location: formData.location,
+      date: formData.date,
+      image: imagePreview || null,
+      type: type,
+      contactInfo: formData.contactInfo || null,
+    };
+    
+    const res = await fetch("/listings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", 
+      },
+      body: JSON.stringify(newItem), 
+    });
+
+    if (!res.ok) throw new Error("Fehler beim Erstellen des Posts");
+
+    const data: Item = await res.json(); 
+    //setResponse(data);
     toast.success(`Your ${type} item has been posted successfully!`);
 
     setFormData({
