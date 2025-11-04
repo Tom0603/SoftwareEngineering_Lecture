@@ -19,8 +19,8 @@ import {
 } from "./ui/select";
 import { toast } from "sonner";
 import { Upload, X } from "lucide-react";
-import { rooms } from "./constants";
-import { categories } from "./constants";
+import { rooms } from "../types/constants";
+import { categories } from "../types/constants";
 
 interface PostItemDialogProps {
   open: boolean;

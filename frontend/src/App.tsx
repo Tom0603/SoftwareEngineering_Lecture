@@ -21,7 +21,7 @@ import {
 } from "./components/ui/dialog";
 import { Search, Plus, MapPin, AlertCircle, CheckCircle } from "lucide-react";
 import { Toaster } from "./components/ui/sonner";
-import { categories } from "./components/constants";
+import { categories } from "./types/constants";
 
 // Mock data for lost and found items
 const mockItems: Item[] = [
