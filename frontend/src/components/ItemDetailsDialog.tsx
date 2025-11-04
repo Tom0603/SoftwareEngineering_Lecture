@@ -82,7 +82,7 @@ export function ItemDetailsDialog({
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-gray-500" />
                 <div>
-                  <p className="text-sm text-gray-500">room</p>
+                  <p className="text-sm text-gray-500">Room</p>
                   <p>{item.room}</p>
                 </div>
               </div>
@@ -90,7 +90,7 @@ export function ItemDetailsDialog({
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4 text-gray-500" />
                 <div>
-                  <p className="text-sm text-gray-500">created_at</p>
+                  <p className="text-sm text-gray-500">Date</p>
                   <p>{item.created_at}</p>
                 </div>
               </div>
@@ -108,8 +108,9 @@ export function ItemDetailsDialog({
                 <Check className="w-4 h-4 mr-2" />
                 {item.type === "lost" ? "Return" : "Collect"}
               </Button>
-              <Button asChild variant="outline" className="flex-1">
+              <Button disabled={!item.contact_email} variant="outline" className="flex-1">
                 <a
+                  className="flex items-center"
                   href={`mailto:${
                     item.contact_email
                   }?subject=${encodeURIComponent(
