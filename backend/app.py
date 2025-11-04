@@ -16,7 +16,7 @@ app: Flask = Flask(__name__)
 
 
 @app.get("/listings")
-def get_anzeigen():
+def get_listings():
     """
     GET /listings
     
@@ -70,7 +70,7 @@ def get_anzeigen():
 
 
 @app.get("/listings/<uuid>")
-def get_anzeige_by_uuid(uuid: str):
+def get_listing_by_uuid(uuid: str):
     """
     GET /listings
     
@@ -106,7 +106,7 @@ def get_anzeige_by_uuid(uuid: str):
         )
         
         if len(response_table.data) == 0:
-            return {"error": "Anzeige does not exist"}, 404
+            return {"error": "listing does not exist"}, 404
         
         listing: list = response_table.data[0]
         listing["b64_image"] = None
@@ -129,7 +129,7 @@ def get_anzeige_by_uuid(uuid: str):
 
 
 @app.post("/listings")
-def create_anzeige():
+def create_listing():
     """
     POST /listings
     
@@ -196,7 +196,7 @@ def create_anzeige():
     except Exception:
         return {"error": "Error while trying to add to database"}, 400
     
-    new_anzeige: dict = response_table.data[0]
+    new_listing: dict = response_table.data[0]
     
     try:
         if image_b64:
@@ -204,17 +204,17 @@ def create_anzeige():
             supabase.storage.from_("images") \
                 .upload(
                     file=base64.b64decode(image_b64.split("base64,")[1]),
-                    path=f"{new_anzeige['uuid']}.png",
+                    path=f"{new_listing['uuid']}.png",
                     file_options={"content-type": "image/png"}
                 )
     except Exception:
         return {"error": "Error while trying to upload image to database"}, 400
 
-    return new_anzeige, 201
+    return new_listing, 201
 
 
 @app.delete("/listings/<uuid>")
-def delete_anzeige(uuid: str):
+def delete_listing(uuid: str):
     """
     DELETE /listings/<uuid>
 
