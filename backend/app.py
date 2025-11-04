@@ -139,11 +139,11 @@ def create_listing():
     -------
     JSON body (application/json)
     {
-        "type": str,
-        "created_at": "YYYY-MM-DD",
-        "title": str,
-        "description": str,
-        "room": str,
+        "type": (str),
+        "created_at": (str) - "YYYY-MM-DD",
+        "title": (str),
+        "description": (str),
+        "room": (str),
         "category": (str),
         "contact_email": (str | null),
         "image_b64": (str | null)        # "data:image/png;base64,...."
