@@ -22,9 +22,25 @@ flask run --debug
 
 Add `.env` file:
 ```sh
-SUPABASE_URL=https://<PROJECT_ID>.supabase.co
+SUPABASE_URL=https://<SUPABASE_PROJECT_ID>.supabase.co
 SUPABASE_KEY={SUPABASE_API_SECRET_KEY}
 ```
+
+### Supabase
+
+listings: {[
+    <u>uuid</u>: uuid,
+    created_at: date,
+    title: string,
+    description
+    room: string
+    contact_email: string | null
+    type: string
+    category: string
+]}
+
+Images are stored as PNG in the "images" bucket with the UUID of the listing as name (`<uuid>.png`).
+
 
 ## API Reference
 
