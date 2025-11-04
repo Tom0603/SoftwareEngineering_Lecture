@@ -195,17 +195,17 @@ export default function App() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const loadItems = async () => {
-      const res = await fetch("http://127.0.0.1:5000/listings");
-      if (!res.ok) throw new Error("Fehler beim Laden");
-
-      const data: Item[] = await res.json();
-      setItems(data);
-      setLoading(false);
-    };
-
     loadItems().catch(console.error);
   }, []);
+
+  const loadItems = async () => {
+    const res = await fetch("http://127.0.0.1:5000/listings");
+    if (!res.ok) throw new Error("Fehler beim Laden");
+
+    const data: Item[] = await res.json();
+    setItems(data);
+    setLoading(false);
+  };
 
   const handleViewDetails = (item: Item) => {
     setSelectedItem(item);
@@ -419,11 +419,11 @@ export default function App() {
       <ItemDetailsDialog
         item={selectedItem}
         open={detailsOpen}
-        onClose={() => setDetailsOpen(false)}
+        onClose={() => {setDetailsOpen(false);loadItems();}}
       />
       <PostItemDialog
         open={postDialogOpen}
-        onClose={() => setPostDialogOpen(false)}
+        onClose={() => {setPostDialogOpen(false);loadItems();}}
         type={postType}
       />
     </div>
