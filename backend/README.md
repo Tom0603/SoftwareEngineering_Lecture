@@ -18,6 +18,6 @@ flask run --debug
 ## Environment
 Add `.env` file:
 ```sh
-SUPABASE_URL={SUPABASE_URL}
-SUPABASE_KEY={SUPABASE_KEY}
+SUPABASE_URL=https://<PROJECT_ID>.supabase.co
+SUPABASE_KEY={SUPABASE_API_SECRET_KEY}
 ```
