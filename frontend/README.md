@@ -1,3 +1,15 @@
+# Lost & Found Frontend
+```sh
+#in Verzeichnis wechseln
+cd ./frontend
+
+#Alle Pakete auf package.json installieren
+npm i
+
+#führe Skript aus
+npm run dev
+```
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
