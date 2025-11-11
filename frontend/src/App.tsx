@@ -41,7 +41,7 @@ export default function App() {
   }, []);
 
   const loadItems = async () => {
-    const res = await fetch("http://127.0.0.1:5000/listings");
+    const res = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/listings`);
     if (!res.ok) throw new Error("Fehler beim Laden");
 
     const data: Item[] = await res.json();

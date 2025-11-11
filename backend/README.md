@@ -3,17 +3,14 @@
 ## Developer
 ### Environment
 
-Add `.env` file and replace spaceholders:
+Add `.env` file and replace placeholders:
 ```sh
-cat <<EOF > .env
 SUPABASE_URL=https://<SUPABASE_PROJECT_ID>.supabase.co
 SUPABASE_KEY=<SUPABASE_API_SECRET_KEY>
 
 PORT=<PORT>
-DEBUG=<bolean>
 
 FRONTEND_ENDPOINT=<FRONTEND_ENDPOINT>
-EOF
 ```
 
 ### Commands
@@ -34,7 +31,6 @@ pip3 freeze > requirements.txt
 # Run
 python3 app.py
 ```
-
 
 
 ### Supabase
