@@ -1,5 +1,5 @@
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 import base64
 from dotenv import load_dotenv
 
@@ -7,14 +7,21 @@ from supabase import create_client, Client
 from flask import Flask, request
 from flask_cors import CORS
 
+from apscheduler.schedulers.background import BackgroundScheduler
+
 
 load_dotenv()
-url: str = os.environ.get("SUPABASE_URL")
-key: str = os.environ.get("SUPABASE_KEY")
-supabase: Client = create_client(url, key)
+
+PORT: int = int(os.environ.get("PORT"))
+FRONTEND_ENDPOINT: str = os.environ.get("FRONTEND_ENDPOINT")
+
+SUPABASE_URL: str = os.environ.get("SUPABASE_URL")
+SUPABASE_KEY: str = os.environ.get("SUPABASE_KEY")
+
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 app: Flask = Flask(__name__)
-CORS(app, origins=["http://localhost:5173", "http://127.0.0.1:5173"])
+CORS(app, origins=[FRONTEND_ENDPOINT])
 
 
 @app.get("/listings")
@@ -229,7 +236,7 @@ def delete_listing(uuid: str):
 
     Responses
     ---------
-    200:
+    200
     """
     
     try:
@@ -245,3 +252,28 @@ def delete_listing(uuid: str):
         return {"error": "Error while trying to delete image from database"}, 400
 
     return {}, 200
+
+def delete_old_listings(older_than_days: int = 14):
+    """
+    Delete all listings, older than given number of days.
+    
+    Parameters
+    ----------
+    older_than_days : int
+    """
+    
+    try:
+        cutoff_date = (datetime.now() - timedelta(days=older_than_days)).isoformat()
+        # Delete rows created before from table
+        supabase.table("listings").delete().lt("created_at", cutoff_date).execute()
+        print(f"[INFO] {datetime.now().isoformat()} : Deleted listings older than {older_than_days} days.")
+    except Exception:
+        pass
+    
+    
+if __name__ == "__main__":
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(delete_old_listings, "cron", hour=7, minute=00, timezone="Europe/Berlin")
+    scheduler.start()
+    
+    app.run(host="0.0.0.0", port=PORT)
