@@ -10,12 +10,14 @@ python3 -m venv venv
 # Activate virtual envireonment
 source venv/bin/activate
 
+# Install all dependencies from requirements.txt
+pip3 install -r requirements.txt
+
 # Update requirements.txt
 pip3 freeze > requirements.txt
 
 # Run
-flask run
-flask run --debug
+python3 app.py
 ```
 
 ### Environment
@@ -23,7 +25,12 @@ flask run --debug
 Add `.env` file:
 ```sh
 SUPABASE_URL=https://<SUPABASE_PROJECT_ID>.supabase.co
-SUPABASE_KEY={SUPABASE_API_SECRET_KEY}
+SUPABASE_KEY=<SUPABASE_API_SECRET_KEY>
+
+PORT=<PORT>
+DEBUG=<boolean>
+
+FRONTEND_ENDPOINT=<FRONTEND_ENDPOINT>
 ```
 
 ### Supabase
@@ -61,7 +68,7 @@ Format of base64 image: `data:image/png;base64,...`
             "category": "(str)",
             "contact_email": "(str | null)",
             "b64_image": "(str | null)"
-        }
+        },
     ]
     ```
 
