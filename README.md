@@ -1,45 +1,47 @@
-# Fundus - Campus App
+# Fundus – Campus App
 
-Willkommen bei Fundus – deiner einfachen Lösung, um verlorene und gefundene Gegenstände rund um den Campus schnell wieder zusammenzubringen!
-Fundus hilft Studierenden und Mitarbeitenden dabei, Fundsachen unkompliziert online zu melden oder nach vermissten Gegenständen zu suchen – ganz ohne Registrierung.
+Welcome to Fundus – your simple solution to quickly reconnect lost and found items on campus!
+Fundus helps students and staff report found items or search for lost belongings online – all without the need to register.
 
-Wenn du etwas gefunden hast, kannst du mit wenigen Klicks ein Bild hochladen und kurz beschreiben, was du entdeckt hast und wo. Alle Meldungen erscheinen sofort öffentlich und können jederzeit von anderen durchsucht werden. Dabei sorgt eine klare Suchfunktion dafür, dass du schnell das findest, was du suchst – entweder über Kategorien oder eine einfache Stichwortsuche.
+If you find something, you can upload a picture and briefly describe what you found and where. All reports are visible to everyone and can be searched at any time. A clear search function allows you to quickly discover relevant entries – either by category or keyword.
 
-Wurde ein Gegenstand abgeholt, kann dies in der Anzeige markiert werden – und sie verschwindet automatisch wieder aus der Übersicht. Zusätzlich werden Einträge, die länger als zwei Wochen alt sind, gelöscht, damit die Seite übersichtlich bleibt und immer aktuelle Funde angezeigt werden.
-Dank einer aufgeräumten, responsiven Oberfläche funktioniert Fundus sowohl auf dem Laptop als auch auf dem Smartphone – ideal für unterwegs oder direkt vor Ort.
+Once an item has been picked up, the report can be marked accordingly, and it will automatically disappear from the overview. Additionally, entries older than two weeks are deleted to keep the platform clean and up-to-date.
+Thanks to a clean, responsive interface, Fundus works smoothly on both laptops and smartphones – ideal whether you're on the go or directly on campus.
 
-Fundus macht es leicht: Gefunden – gesucht – wiedergefunden.
+Fundus makes it easy: Found – searched – reunited.
 
-## Spezifikation
+## Specification
 
 <details>
-<summary>Funktionale Anforderungen</summary>
+<summary>Functional Requirements</summary>
 
-| Titel                     | Beschreibung                                                                                                 | Relevanz        |
-|---------------------------|-------------------------------------------------------------------------------------------------------------|-----------------|
-| Anzeige schalten          | Nutzer können eine Anzeige mit Bild, Titel, Beschreibung und Fundort online stellen.                        | 🔴 sehr wichtig |
-| Manuelle Duplikatsprüfung | Beim Inserieren werden dem Nutzer bereits gemeldete Gegenstände am gleichen Fundort angezeigt. Er entscheidet dann, ob er die Anzeige erstellt. | 🟡 mittel |
-| Suche nach Kategorie/Text | Nutzer können Anzeigen nach Kategorien (z. B. Kleidung, Elektronik) oder per Freitext durchsuchen.           | 🟡 mittel       |
-| Gegenstand abholen        | Nutzer können eine Anzeige als „abgeholt“ markieren.                                                        | 🔴 sehr wichtig |
-| Suche inserieren          | Nutzer können Gesuche aufgeben, um auf verlorene Gegenstände aufmerksam zu machen.                          | 🟠 wichtig      |
-| Login / Registrieren      | Nutzerkonten ermöglichen personalisierte Anzeigen.                                                          | 🟡 mittel       |
-| Logging                   | Es wird protokolliert, wer einen Gegenstand als abgeholt markiert hat, um Missbrauch nachverfolgen zu können.| 🟢 gering       |
-| Kategorien / Tags         | Anzeigen können mit Kategorien (z. B. Kleidung, Elektronik) oder Schlagwörtern versehen werden.              | 🟡 mittel       |
-| Benachrichtigungen        | Nutzer erhalten eine Nachricht (E-Mail/App), wenn ein möglicher Treffer zu ihrem Gesuch oder Fundort erscheint.| 🟢 gering   |
+| Title                   | Description                                                                                                      | Importance   |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------ |
+| Create Listing          | Users can create a listing with an image, title, description, and location.                                      | 🔴 Critical  |
+| Manual Duplicate Check  | When creating a listing, users are shown similar items from the same location and can decide whether to proceed. | 🟡 Medium    |
+| Search by Category/Text | Users can search listings by category (e.g., clothing, electronics) or via free text.                            | 🟡 Medium    |
+| Mark Item as Retrieved  | Users can mark an item as “retrieved.”                                                                           | 🔴 Critical  |
+| Create Search Request   | Users can post a request for items they are actively searching for.                                              | 🟠 Important |
+| Login / Registration    | User accounts allow personalized listings.                                                                       | 🟡 Medium    |
+| Logging                 | System logs who marked an item as retrieved to prevent misuse.                                                   | 🟢 Low       |
+| Categories / Tags       | Listings can be assigned categories or tags.                                                                     | 🟡 Medium    |
+| Notifications           | Users receive notifications (email/app) when a potential match appears.                                          | 🟢 Low       |
+
 
 </details>
 
 <details>
-<summary>Nicht-Funktionale Anforderungen</summary>
+<summary>Non-Functional Requirements</summary>
 
-| Titel             | Beschreibung                                                                                  | Relevanz        |
-|-------------------|------------------------------------------------------------------------------------------------|-----------------|
-| Antwortzeit / Suche | Seiten sollen innerhalb von 2 Sekunden laden, Suchergebnisse in weniger als 1 Sekunde erscheinen. | 🔴 sehr wichtig |
-| Betriebszeit      | Die Anwendung soll eine Verfügbarkeit von mindestens 95 % pro Monat haben.                     | 🔴 sehr wichtig |
-| Einfache Bedienung| Die Nutzeroberfläche soll klar, selbsterklärend und auch ohne technisches Vorwissen nutzbar sein.| 🟠 wichtig      |
-| Modularer Aufbau  | Das System soll modular entwickelt sein, sodass neue Funktionen einfach ergänzt werden können. | 🟠 wichtig        |
-| Fehlerbehandlung  | Fehlerhafte Eingaben oder Systemfehler sollen verständlich abgefangen und dem Nutzer angezeigt werden.| 🔴 sehr wichtig |
-| Barrierefreiheit  | Die Anwendung ist auch für Nutzer mit Einschränkungen (Screenreader, Kontraste) zugänglich.      | 🟠 wichtig      |
+| Title                  | Description                                                                                         | Importance   |
+| ---------------------- | --------------------------------------------------------------------------------------------------- | ------------ |
+| Response Time / Search | Pages should load within 2 seconds, search results within 1 second.                                 | 🔴 Critical  |
+| Availability           | The application should have at least 95% uptime per month.                                          | 🔴 Critical  |
+| Ease of Use            | The interface should be clear and intuitive, even for non-technical users.                          | 🟠 Important |
+| Modular Architecture   | The system should be modular to allow easy feature expansion.                                       | 🟠 Important |
+| Error Handling         | Input and system errors should be communicated clearly to users.                                    | 🔴 Critical  |
+| Accessibility          | The application should be usable with assistive technologies (screen readers, contrast mode, etc.). | 🟠 Important |
+
 
 </details>
 
@@ -47,11 +49,11 @@ Fundus macht es leicht: Gefunden – gesucht – wiedergefunden.
 <details>
 <summary>MVP</summary>
 <br>
-Das Minimum Viable Product (MVP) der Fundgegenstände-Webanwendung konzentriert sich auf die grundlegenden Funktionen, die den Kernnutzen für die Nutzerinnen und Nutzer sicherstellen. Im Mittelpunkt steht die Möglichkeit, gefundene Gegenstände schnell und einfach online zu melden. Dazu können Nutzer ein Bild hochladen sowie Titel, Beschreibung und Fundort angeben. Alle Anzeigen sind öffentlich einsehbar und können über eine Suchfunktion nach Kategorien oder Freitext durchsucht werden. Wurde ein Gegenstand abgeholt, kann dies in der Anzeige vermerkt werden, sodass die Anzeige verschwindet. Zusätzlich werden alle Anzeigen nach spätestens zwei Wochen automatisch gelöscht, um die Übersichtlichkeit zu gewährleisten.
+The Minimum Viable Product (MVP) focuses on core functionality that ensures direct value for users. The main feature is the ability to quickly and easily report found items online. Users can upload an image and provide a title, description, and location. All listings are publicly visible and searchable via category or keyword. If an item is retrieved, the listing can be marked accordingly so it disappears. To maintain clarity, all listings are automatically removed after two weeks.
 
-Die Anwendung soll einfach zu bedienen und auch ohne Registrierung nutzbar sein. Eine klare, responsive Oberfläche sorgt dafür, dass die Plattform sowohl auf dem Computer als auch auf mobilen Endgeräten problemlos funktioniert. Die Suche muss schnell Ergebnisse liefern, sodass Nutzer innerhalb weniger Sekunden relevante Anzeigen finden können.
+The application is designed for simplicity and can be used without registration. A clean, responsive interface ensures smooth usability on both desktops and mobile devices. The search function must return results fast, enabling users to find relevant listings within seconds.
 
-Auf diese Weise deckt das MVP die wesentlichen Schritte ab: Fund melden – Fund suchen – Fund abholen. Erweiterte Funktionen wie Nutzer-Accounts, Benachrichtigungen, Duplikatsprüfungen oder Standortkarten sind in späteren Ausbaustufen vorgesehen, gehören aber nicht zum ersten lauffähigen Produkt.
+Thus, the MVP covers the essential flow: Report – Search – Retrieve. Additional features such as user accounts, notifications, duplicate detection, or location maps may be added in later development stages.
 <br>
 
 </details>
@@ -59,67 +61,49 @@ Auf diese Weise deckt das MVP die wesentlichen Schritte ab: Fund melden – Fund
 
 ## Personas
 
-<details>
-<summary>Miriam (19, Erstsemester Biologie)</summary>
+<details> <summary>Miriam (19, First-Year Biology)</summary>
 
-**Ziel:** Übersichtliche Orientierung: Wo kann sie nach ihrem verlorenen Schlüssel suchen? Wer ist Ansprechpartner?  
-**Frust:** Sie ist neu am Campus und weiß nicht, wo Fundsachen gemeldet oder abgeholt werden können.
+**Goal**: Quickly understand where she can search for her missing key and who to contact. <br>
+**Frustration**: As a newcomer, she has no idea where lost items are handled on campus.
 
-</details>
+</details> <details> <summary>Jonas (24, Master’s in Computer Science)</summary>
 
+**Goal**: Report found USB sticks or headphones so they can be returned to the owner. <br>
+**Frustration**: There is no central system; items often disappear or remain unclaimed for weeks.
 
-<details>
-<summary>Jonas (24, Master Informatik)</summary>
+</details> <details> <summary>Lisa (21, Business Administration Student)</summary>
 
-**Ziel:** Er will gefundene USB-Sticks oder Kopfhörer einfach eintragen, damit der Besitzer sie wiederbekommt.  
-**Frust:** Es gibt kein zentrales System, und Fundstücke bleiben oft wochenlang liegen oder verschwinden.
+**Goal**: Report a lost item she left at the cafeteria easily. <br>
+**Frustration**: She currently has to check multiple places and never knows whether anyone found it.
 
-</details>
+</details> <details> <summary>Max (27, Chemistry Student)</summary>
 
+**Goal**: Regularly check whether his missing calculator has been found. <br>
+**Frustration**: Information is scattered, relying on posters and notice boards.
 
-<details>
-<summary>Lisa (21, BWL-Studentin)</summary>
+</details> <details> <summary>Katrin (22, Education Studies)</summary>
 
-**Ziel:** Sie möchte schnell und unkompliziert einen verlorenen Gegenstand melden, den sie in der Mensa vergessen hat.  
-**Frust:** Bislang muss sie mehrere Stellen abklappern und weiß nie, ob ihr Fund überhaupt gemeldet wurde.
-
-</details>
-
-
-<details>
-<summary>Max (27, Chemiestudent)</summary>
-
-**Ziel:** Er möchte regelmäßig prüfen, ob sein verlorener Taschenrechner gemeldet wurde.  
-**Frust:** Die Informationen sind verstreut und er muss sich auf Aushänge verlassen.
-
-</details>
-
-
-<details>
-<summary>Katrin (22, Pädagogikstudentin)</summary>
-
-**Ziel:** Einen anonymen Weg finden, um einen gefundenen Gegenstand zu melden, ohne persönlich ins Sekretariat zu gehen.  
-**Frust:** Sie fühlt sich unsicher, wenn sie direkt mit Fremden Kontakt aufnehmen muss.
-
+**Goal**: Report a found item anonymously without having to interact directly. <br>
+**Frustration**: She feels uncomfortable approaching strangers in person.
 </details>
 
 
 ## Stakeholder
 
 <details>
-<summary>Studierende</summary>
+<summary>Students</summary>
 
-- Erstsemester → neu auf dem Campus, unsicher, wo Fundsachen gemeldet oder abgeholt werden können.  
-- Höhere Semester → kennen sich besser aus, möchten schnell melden oder finden.  
-- Dual Studierende allgemein → sind nicht immer am Campus, möchten ggf. auch aus der Ferne prüfen, ob ihr Fund gemeldet wurde.  
+- First-years → don’t know where to look for lost & found services.
+- Senior students → want fast reporting and search.
+- Dual students → are not always on campus and want remote access.  
 
 </details>
 
 
 <details>
-<summary>Lehrende & Wissenschaftliche Mitarbeiter</summary>
+<summary>Faculty & Academic Staff</summary>
 
-- Professor:innen / Dozent:innen → verlieren oder finden Gegenstände in Vorlesungen.  
+- Professors and instructors → lose and find items in lecture halls. 
 
 </details>
 
@@ -131,33 +115,51 @@ Auf diese Weise deckt das MVP die wesentlichen Schritte ab: Fund melden – Fund
 - Hausmeister / Facility Management → finden regelmäßig Dinge in Hörsälen, Fluren, Toiletten.   
 - Mensa- und Cafeteria-Personal → Fundorte wie Geschirr, Kleidung, Taschen.  
 
+</details> 
+
+<details> 
+<summary>Administrative & Service Staff</summary>
+
+- Front desk staff → previously the main lost & found contact point.
+- Facilities staff → frequently find items around campus.
+- Cafeteria staff → common location for lost water bottles, clothing, etc.
+
+</details> 
+
+<details> 
+<summary>Technical Personnel</summary>
+
+- IT Support → maintains the application and data security.
+- Data Protection Officers → ensure compliance with privacy regulations.
+
+</details> 
+
+<details> 
+<summary>Administration & Leadership</summary>
+
+- University leadership → wants organized processes and a positive campus experience.
+- Facilities management → benefits from reduced workload and clearer workflows.
+
+</details> 
+
+<details> 
+<summary>External Stakeholders</summary>
+
+- Visitors (guests, families, corporate partners) → may also lose or find items.
+- Cleaning staff (contracted companies) → often find items outside office hours.
+
 </details>
 
+## Project ReadME structure
 
-<details>
-<summary>Technisches Personal</summary>
+This repository is divided into Frontend and Backend components.
+Each part of the project has its own README file, which explains its setup and architecture in detail:
 
-- IT-Support → betreuen die Webanwendung, kümmern sich um Login, Accounts, Datenhaltung.  
-- Datenschutzbeauftragte → achten auf DSGVO und sichere Verarbeitung personenbezogener Daten.  
+- Backend README (./backend/README.md):
+Contains information about the backend architecture and folder structure, how to set up the environment (including .env configuration and virtual environment), how to start the development server, available scripts and commands, API endpoints with example requests/responses, libraries used, testing instructions, deployment notes, and troubleshooting tips.
 
-</details>
+- Frontend README (./frontend/README.md):
+Describes the tech stack and project structure (pages/routes, components, state handling), setup and development server instructions, environment variables, available npm/yarn scripts, build and preview steps, code style and formatting rules, testing instructions (if applicable), deployment notes, and known issues.
 
-
-<details>
-<summary>Verwaltung & Leitung</summary>
-
-- Hochschulleitung → möchte geregelte Prozesse und gutes Image.  
-- Verwaltungsleitung / Facility Management → hat organisatorisches Interesse an Ordnung und Reduktion von Aufwand.  
-
-</details>
-
-
-<details>
-<summary>Externe Stakeholder</summary>
-
-- Besucher:innen (z. B. Eltern, Gäste bei Veranstaltungen, Firmenvertreter in Projekten) → können ebenfalls Dinge verlieren oder finden.  
-- Reinigungspersonal (Fremdfirmen) → finden sehr häufig Gegenstände außerhalb der regulären Zeiten.  
-
-</details>
-
-
+Before working on any part of the application, please refer to the corresponding README.
+It provides everything needed to set up, develop, and deploy that part of the project.
