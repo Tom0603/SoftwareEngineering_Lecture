@@ -93,7 +93,7 @@ export function PostItemDialog({ open, onClose, type }: PostItemDialogProps) {
       contact_email: formData.contact_email || null,
     };
 
-    const res = await fetch("http://127.0.0.1:5000/listings", {
+    const res = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/listings`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

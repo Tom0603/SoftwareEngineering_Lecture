@@ -7,7 +7,7 @@ import {
 } from "./ui/dialog";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { MapPin, Check, Calendar, Tag, Mail, Phone } from "lucide-react";
+import { MapPin, Check, Calendar, Tag, Mail } from "lucide-react";
 import { type Item } from "./ItemCard";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
@@ -26,7 +26,7 @@ export function ItemDetailsDialog({
 
   const handleAction = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:5000/listings/${item.uuid}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/listings/${item.uuid}`, {
         method: "DELETE",
       });
 
@@ -34,7 +34,7 @@ export function ItemDetailsDialog({
         throw new Error(`Failed to delete item: ${response.statusText}`);
       }
 
-      console.log(`Anzeige ${item.id} erfolgreich gelöscht.`);
+      console.log(`Anzeige ${item.uuid} erfolgreich gelöscht.`);
 
       onClose();
     } catch (error) {
