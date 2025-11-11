@@ -10,6 +10,12 @@ npm i
 npm run dev
 ```
 
+# Environment
+Add `.env` file:
+```sh
+VITE_API_ENDPOINT=<API_ENDPOINT>
+```
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
