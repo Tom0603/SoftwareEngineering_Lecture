@@ -26,7 +26,7 @@ export function ItemDetailsDialog({
 
   const handleAction = async () => {
     try {
-      const response = await fetch(`/listings/${item.id}`, {
+      const response = await fetch(`http://127.0.0.1:5000/listings/${item.uuid}`, {
         method: "DELETE",
       });
 
@@ -52,13 +52,13 @@ export function ItemDetailsDialog({
               {item.type === "lost" ? "Lost Item" : "Found Item"}
             </Badge>
           </div>
-          <DialogDescription>Posted on {item.date}</DialogDescription>
+          <DialogDescription>Posted on {item.created_at}</DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4">
           <div className="aspect-video overflow-hidden rounded-lg bg-gray-100">
             <ImageWithFallback
-              src={item.image}
+              src={item.b64_image}
               alt={item.title}
               className="w-full h-full object-cover"
             />
@@ -82,8 +82,8 @@ export function ItemDetailsDialog({
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-gray-500" />
                 <div>
-                  <p className="text-sm text-gray-500">Location</p>
-                  <p>{item.location}</p>
+                  <p className="text-sm text-gray-500">Room</p>
+                  <p>{item.room}</p>
                 </div>
               </div>
 
@@ -91,15 +91,15 @@ export function ItemDetailsDialog({
                 <Calendar className="w-4 h-4 text-gray-500" />
                 <div>
                   <p className="text-sm text-gray-500">Date</p>
-                  <p>{item.date}</p>
+                  <p>{item.created_at}</p>
                 </div>
               </div>
             </div>
 
-            {item.contactInfo && (
+            {item.contact_email && (
               <div className="border-t pt-4 mt-4">
                 <h4 className="mb-2">Contact Information</h4>
-                <p className="text-gray-600">{item.contactInfo}</p>
+                <p className="text-gray-600">{item.contact_email}</p>
               </div>
             )}
 
@@ -108,10 +108,11 @@ export function ItemDetailsDialog({
                 <Check className="w-4 h-4 mr-2" />
                 {item.type === "lost" ? "Return" : "Collect"}
               </Button>
-              <Button asChild variant="outline" className="flex-1">
+              <Button disabled={!item.contact_email} variant="outline" className="flex-1">
                 <a
+                  className="flex items-center"
                   href={`mailto:${
-                    item.contactInfo
+                    item.contact_email
                   }?subject=${encodeURIComponent(
                     item.type === "lost"
                       ? "Found your lost item"

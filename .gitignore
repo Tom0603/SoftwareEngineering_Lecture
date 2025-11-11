@@ -24,3 +24,10 @@ Icon[
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Python
+__pycache__
+venv
+
+# Environment variable files
+*/.env*

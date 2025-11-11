@@ -1,0 +1,109 @@
+# Lost & Found Backend
+
+## Developer
+### Commands
+
+```sh
+# Create virtual envireonment
+python3 -m venv venv
+
+# Activate virtual envireonment
+source venv/bin/activate
+
+# Install all dependencies from requirements.txt
+pip3 install -r requirements.txt
+
+# Update requirements.txt
+pip3 freeze > requirements.txt
+
+# Run
+python3 app.py
+```
+
+### Environment
+
+Add `.env` file:
+```sh
+SUPABASE_URL=https://<SUPABASE_PROJECT_ID>.supabase.co
+SUPABASE_KEY=<SUPABASE_API_SECRET_KEY>
+
+PORT=<PORT>
+DEBUG=<boolean>
+
+FRONTEND_ENDPOINT=<FRONTEND_ENDPOINT>
+```
+
+### Supabase
+
+listings: {[
+    <u>uuid</u>: uuid,
+    created_at: date,
+    title: string,
+    description
+    room: string
+    contact_email: string | null
+    type: string
+    category: string
+]}
+
+Images are stored as PNG in the "images" bucket with the UUID of the listing as name (`<uuid>.png`).
+
+
+## API Reference
+
+Format of base64 image: `data:image/png;base64,...`
+
+- **GET listings:**  
+    `GET /listings`  
+    JSON response:
+    ```json
+    [
+        {
+            "uuid": "(str)",
+            "type": "(str)",
+            "created_at": "(str)",
+            "title": "(str)",
+            "description": "(str)",
+            "room": "(str)",
+            "category": "(str)",
+            "contact_email": "(str | null)",
+            "b64_image": "(str | null)"
+        },
+    ]
+    ```
+
+- **GET listing:**  
+    `GET /listings/<uuid>`  
+    JSON response:
+    ```json
+    {
+        "uuid": "(str)",
+        "type": "(str)",
+        "created_at": "(str)",
+        "title": "(str)",
+        "description": "(str)",
+        "room": "(str)",
+        "category": "(str)",
+        "contact_email": "(str | null)",
+        "b64_image": "(str | null)"
+    }
+    ```
+
+- **Create listing:**  
+    `POST /listings`  
+    JSON body (application/json):
+    ```json
+    {
+        "type": "(str)",
+        "created_at": "(str) - YYYY-MM-DD",
+        "title": "(str)",
+        "description": "(str)",
+        "room": "(str)",
+        "category": "(str)",
+        "contact_email": "(str | null)",
+        "image_b64": "(str | null)"
+    }
+    ```
+
+- **DELETE listing:**  
+    `DELETE /listings/<uuid>`  

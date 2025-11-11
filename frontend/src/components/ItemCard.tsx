@@ -5,15 +5,15 @@ import { MapPin, Calendar, Eye } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 export interface Item {
-  id: string;
+  uuid: string;
   title: string;
   description: string;
   category: string;
-  location: string;
-  date: string;
-  image: string;
+  room: string;
+  created_at: string;
+  b64_image: string;
   type: "lost" | "found";
-  contactInfo?: string;
+  contact_email?: string;
 }
 
 interface ItemCardProps {
@@ -23,10 +23,13 @@ interface ItemCardProps {
 
 export function ItemCard({ item, onViewDetails }: ItemCardProps) {
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer" onClick={() => onViewDetails(item)}>
+    <Card
+      className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+      onClick={() => onViewDetails(item)}
+    >
       <div className="aspect-[4/3] overflow-hidden bg-gray-100">
         <ImageWithFallback
-          src={item.image}
+          src={item.b64_image}
           alt={item.title}
           className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
         />
@@ -42,19 +45,23 @@ export function ItemCard({ item, onViewDetails }: ItemCardProps) {
         <div className="space-y-1 text-sm text-gray-500">
           <div className="flex items-center gap-2">
             <MapPin className="w-4 h-4" />
-            <span>{item.location}</span>
+            <span>{item.room}</span>
           </div>
           <div className="flex items-center gap-2">
             <Calendar className="w-4 h-4" />
-            <span>{item.date}</span>
+            <span>{item.created_at}</span>
           </div>
         </div>
       </CardContent>
       <CardFooter className="p-4 pt-0">
-        <Button variant="outline" className="w-full" onClick={(e) => {
-          e.stopPropagation();
-          onViewDetails(item);
-        }}>
+        <Button
+          variant="outline"
+          className="w-full"
+          onClick={(e) => {
+            e.stopPropagation();
+            onViewDetails(item);
+          }}
+        >
           <Eye className="w-4 h-4 mr-2" />
           View Details
         </Button>
