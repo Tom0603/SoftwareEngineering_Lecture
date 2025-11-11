@@ -1,0 +1,46 @@
+services:
+  api:
+    build:
+      context: ./src/backend
+      dockerfile: Dockerfile
+    container_name: fundus-api-container
+    environment:
+      SUPABASE_URL: ${SUPABASE_URL}
+      SUPABASE_KEY: ${SUPABASE_KEY}
+      PORT: 8000
+      FRONTEND_ENDPOINT: ${FRONTEND_ENDPOINT}
+    ports:
+      - "8000:8000"
+    command: python3 src/app.py
+    networks:
+      - fundus-network
+
+  api-tests:
+    build:
+      context: ./src/backend
+      dockerfile: Dockerfile
+    container_name: fundus-api-tests-container
+    environment:
+      SUPABASE_URL: ${SUPABASE_URL}
+      SUPABASE_KEY: ${SUPABASE_KEY}
+      PORT: 8000
+      FRONTEND_ENDPOINT: ${FRONTEND_ENDPOINT}
+    command: pytest -q
+    networks:
+      - fundus-network
+
+  frontend:
+    build:
+      context: ./src/frontend
+      dockerfile: Dockerfile
+    container_name: fundus-frontend-container
+    environment:
+      VITE_API_ENDPOINT: ${VITE_API_ENDPOINT}
+    ports:
+      - 5173:5173
+    command: npm run dev
+    networks:
+      - fundus-network
+
+networks:
+  fundus-network:

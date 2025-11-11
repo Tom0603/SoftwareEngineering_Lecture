@@ -1,6 +1,6 @@
 # Fundus – Campus App
 
-Welcome to Fundus – your simple solution to quickly reconnect lost and found items on campus!
+Welcome to **Fundus** – your simple solution to quickly reconnect lost and found items on campus!
 Fundus helps students and staff report found items or search for lost belongings online – all without the need to register.
 
 If you find something, you can upload a picture and briefly describe what you found and where. All reports are visible to everyone and can be searched at any time. A clear search function allows you to quickly discover relevant entries – either by category or keyword.
@@ -10,7 +10,209 @@ Thanks to a clean, responsive interface, Fundus works smoothly on both laptops a
 
 Fundus makes it easy: Found – searched – reunited.
 
-## Specification
+## Tech Stack
+
+![image](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
+![image](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
+![image](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
+
+**Backend:**
+
+![image](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+![image](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![image](https://img.shields.io/badge/pytest-%23ffffff.svg?style=for-the-badge&logo=pytest&logoColor=2f9fe3)
+
+**Frontend:**
+
+![image](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![image](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
+![image](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+
+
+## Project Tree
+```
+.
+├── docs
+│   ├── architecture
+│   └── diagrams
+├── src
+│   ├── backend
+│   │   ├── src
+│   │   │   └── app.py
+│   │   ├── tests
+│   │   │   └── test_app.py
+│   │   ├── requirements.txt
+│   │   └── Dockerfile
+│   └── frontend
+│       ├── public
+│       ├── src
+│       │   └── types
+│       │   ├── components
+│       │   ├── App.tsx
+│       │   ├── main.tsx
+│       │   ├── App.css
+│       │   └── index.css
+│       ├── package.json
+│       └── Dockerfile
+├── .gitignore
+├── .env
+├── docker-compose.yaml
+└── README.md
+```
+
+
+## Getting Started
+
+### Prerequisites
+
+- **Docker**
+
+
+### Installation
+
+#### Running Docker Containers
+
+1. **Clone the repository**
+    ```bash
+    git clone https://github.com/Tom0603/SoftwareEngineering_Lecture
+    cd SoftwareEngineering_Lecture
+    ```
+
+2. **Configure environment variables**
+
+    Create a `.env` file:
+    ```ini
+    # Database configuration
+    SUPABASE_URL=https://<SUPABASE_PROJECT_ID>.supabase.co
+    SUPABASE_KEY=<SUPABASE_API_SECRET_KEY>
+
+    # Endpoints for communication between frontend and backend
+    FRONTEND_ENDPOINT=http://localhost:5173
+    VITE_API_ENDPOINT=http://localhost:8000
+    ```
+
+3. **Start all containers**
+    ```bash
+    docker compose up -d --build
+    ```
+
+    There are three containers:
+    - fundus-api-container
+    - fundus-api-tests-container
+    - fundus-frontend-container
+
+- Access API via [http://localhost:8000](http://localhost:8000)
+- Access frontend via [http://localhost:5173](http://localhost:5173)
+
+
+### Supabase
+
+listings: {[
+    <u>uuid</u>: uuid,
+    created_at: date,
+    title: string,
+    description: string,
+    room: string,
+    contact_email: string | null,
+    type: string,
+    category: string
+]}
+
+Images are stored as PNG in the "images" bucket with the UUID of the listing as name (`<uuid>.png`).
+
+
+### Tests
+
+This project includes automated tests to ensure that the core API functionality works as expected.  
+
+<details>
+<summary><strong>What is being tested?</strong></summary>
+
+The tests cover:
+- Fetching all listings (`GET /listings`)
+- Creating new listings (`POST /listings`)
+- Retrieving a listing by its UUID (`GET /listings/<uuid>`)
+- Handling non-existing or malformed UUID queries
+- Marking and deleting expired listings (`delete_old_listings()`)
+- Deleting a listing by UUID (`DELETE /listings/<uuid>`)
+
+These tests run **without starting a real server** and execute directly against the Flask application.
+</details> 
+
+
+## Usage Guide
+
+### API Reference
+
+Format of base64 image: `data:image/png;base64,...`
+
+<details>
+<summary><strong>Listings</strong></summary>
+
+- **Get all listings:** 
+    `GET /listings`
+
+    JSON response:
+    ```json
+    [
+        {
+            "uuid": "(str)",
+            "type": "(str)",
+            "created_at": "(str)",
+            "title": "(str)",
+            "description": "(str)",
+            "room": "(str)",
+            "category": "(str)",
+            "contact_email": "(str | null)",
+            "b64_image": "(str | null)"
+        },
+    ]
+    ```
+
+- **Get listing with uuid:** 
+    `GET /listings/<uuid>`  
+
+    JSON response:
+    ```json
+    {
+        "uuid": "(str)",
+        "type": "(str)",
+        "created_at": "(str)",
+        "title": "(str)",
+        "description": "(str)",
+        "room": "(str)",
+        "category": "(str)",
+        "contact_email": "(str | null)",
+        "b64_image": "(str | null)"
+    }
+    ```
+
+- **Create listing:** 
+    `POST /listings`  
+
+    JSON body (application/json):
+    ```json
+    {
+        "type": "(str)",
+        "created_at": "(str) - YYYY-MM-DD",
+        "title": "(str)",
+        "description": "(str)",
+        "room": "(str)",
+        "category": "(str)",
+        "contact_email": "(str | null)",
+        "image_b64": "(str | null)"
+    }
+    ```
+
+- **Delete listing:** 
+    `DELETE /listings/<uuid>`  
+
+</details> 
+
+
+## Project Management
+
+### Specification
 
 <details>
 <summary>Functional Requirements</summary>
@@ -59,7 +261,7 @@ Thus, the MVP covers the essential flow: Report – Search – Retrieve. Additio
 </details>
 
 
-## Personas
+### Personas
 
 <details> <summary>Miriam (19, First-Year Biology)</summary>
 
@@ -88,7 +290,7 @@ Thus, the MVP covers the essential flow: Report – Search – Retrieve. Additio
 </details>
 
 
-## Stakeholder
+### Stakeholder
 
 <details>
 <summary>Students</summary>
@@ -149,17 +351,3 @@ Thus, the MVP covers the essential flow: Report – Search – Retrieve. Additio
 - Cleaning staff (contracted companies) → often find items outside office hours.
 
 </details>
-
-## Project ReadME structure
-
-This repository is divided into Frontend and Backend components.
-Each part of the project has its own README file, which explains its setup and architecture in detail:
-
-- Backend README (./backend/README.md):
-Contains information about the backend architecture and folder structure, how to set up the environment (including .env configuration and virtual environment), how to start the development server, available scripts and commands, API endpoints with example requests/responses, libraries used, testing instructions, deployment notes, and troubleshooting tips.
-
-- Frontend README (./frontend/README.md):
-Describes the tech stack and project structure (pages/routes, components, state handling), setup and development server instructions, environment variables, available npm/yarn scripts, build and preview steps, code style and formatting rules, testing instructions (if applicable), deployment notes, and known issues.
-
-Before working on any part of the application, please refer to the corresponding README.
-It provides everything needed to set up, develop, and deploy that part of the project.
