@@ -53,7 +53,8 @@ Images are stored as PNG in the "images" bucket with the UUID of the listing as 
 
 Format of base64 image: `data:image/png;base64,...`
 
-- **GET listings:**  
+<details>
+<summary><strong>Get all listings</strong></summary>
     `GET /listings`  
     JSON response:
     ```json
@@ -71,8 +72,10 @@ Format of base64 image: `data:image/png;base64,...`
         },
     ]
     ```
+</details> 
 
-- **GET listing:**  
+<details>
+<summary><strong>Get listing with uuid</strong></summary>
     `GET /listings/<uuid>`  
     JSON response:
     ```json
@@ -88,8 +91,10 @@ Format of base64 image: `data:image/png;base64,...`
         "b64_image": "(str | null)"
     }
     ```
+</details> 
 
-- **Create listing:**  
+<details>
+<summary><strong>Create listing</strong></summary>  
     `POST /listings`  
     JSON body (application/json):
     ```json
@@ -104,6 +109,43 @@ Format of base64 image: `data:image/png;base64,...`
         "image_b64": "(str | null)"
     }
     ```
+</details> 
 
-- **DELETE listing:**  
+<details>
+<summary><strong>Delete listing</strong></summary>  
     `DELETE /listings/<uuid>`  
+</details> 
+
+## Tests
+
+This project includes automated tests to ensure that the core API functionality works as expected.  
+The tests focus on verifying the behavior of the main endpoints responsible for creating, retrieving, listing, and deleting listings, as well as the scheduled cleanup function for removing outdated entries.
+
+<details>
+<summary><strong>What is being tested?</strong></summary>
+
+The tests cover:
+- Fetching all listings (`GET /listings`)
+- Creating new listings (`POST /listings`)
+- Retrieving a listing by its UUID (`GET /listings/<uuid>`)
+- Handling non-existing or malformed UUID queries
+- Marking and deleting expired listings (`delete_old_listings()`)
+- Deleting a listing by UUID (`DELETE /listings/<uuid>`)
+
+These tests run **without starting a real server** and execute directly against the Flask application.
+</details> 
+
+<details>
+<summary><strong>How to run the tests</strong></summary>
+
+Make sure your virtual environment is activated:
+
+```bash
+source venv/bin/activate
+```
+Navigate to the backend directory and run the test suite:
+
+```bash
+python -m pytest -q
+```
+</details> 
