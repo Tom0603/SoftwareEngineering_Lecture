@@ -176,7 +176,10 @@ def create_listing():
     data_body: dict = request.get_json()
 
     type: str | None = data_body.get("type")
-    created_at: str | None = datetime.strptime(data_body.get("created_at"), "%Y-%m-%d").isoformat()
+
+    created_at: str | None = data_body.get("created_at")
+    if created_at: created_at: str | None = datetime.strptime(created_at, "%Y-%m-%d").isoformat()
+    
     title: str | None = data_body.get("title")
     description: str | None = data_body.get("description")
     room: str | None = data_body.get("room")
@@ -184,7 +187,7 @@ def create_listing():
     contact_email: str | None = data_body.get("contact_email")
     b64_image: str | None = data_body.get("b64_image")
 
-    if not any([type, created_at, title, description, room, category]):
+    if not all([type, created_at, title, description, room, category]):
         return {"error": "Missing required fields"}, 400
 
     try:
