@@ -1,6 +1,14 @@
-# Campus-App
+# Fundus - Campus App
 
-Diese Webanwendung ermöglicht es, gefundene herrenlose Gegenstände zu melden. Nutzer, die einen Gegenstand eintragen möchten, laden ein Foto hoch, fügen einen Titel und eine Beschreibung hinzu und geben den Fundort an. Alle Anzeigen sind öffentlich einsehbar, sodass andere ihre verlorenen Gegenstände leichter wiederfinden können. Sobald ein Gegenstand abgeholt wurde, kann dies vermerkt werden und die Anzeige wird entfernt. Unabhängig davon bleibt jede Anzeige maximal zwei Wochen online.
+Willkommen bei Fundus – deiner einfachen Lösung, um verlorene und gefundene Gegenstände rund um den Campus schnell wieder zusammenzubringen!
+Fundus hilft Studierenden und Mitarbeitenden dabei, Fundsachen unkompliziert online zu melden oder nach vermissten Gegenständen zu suchen – ganz ohne Registrierung.
+
+Wenn du etwas gefunden hast, kannst du mit wenigen Klicks ein Bild hochladen und kurz beschreiben, was du entdeckt hast und wo. Alle Meldungen erscheinen sofort öffentlich und können jederzeit von anderen durchsucht werden. Dabei sorgt eine klare Suchfunktion dafür, dass du schnell das findest, was du suchst – entweder über Kategorien oder eine einfache Stichwortsuche.
+
+Wurde ein Gegenstand abgeholt, kann dies in der Anzeige markiert werden – und sie verschwindet automatisch wieder aus der Übersicht. Zusätzlich werden Einträge, die länger als zwei Wochen alt sind, gelöscht, damit die Seite übersichtlich bleibt und immer aktuelle Funde angezeigt werden.
+Dank einer aufgeräumten, responsiven Oberfläche funktioniert Fundus sowohl auf dem Laptop als auch auf dem Smartphone – ideal für unterwegs oder direkt vor Ort.
+
+Fundus macht es leicht: Gefunden – gesucht – wiedergefunden.
 
 ## Spezifikation
 

@@ -1,6 +1,21 @@
 # Lost & Found Backend
 
 ## Developer
+### Environment
+
+Add `.env` file and replace spaceholders:
+```sh
+cat <<EOF > .env
+SUPABASE_URL=https://<SUPABASE_PROJECT_ID>.supabase.co
+SUPABASE_KEY=<SUPABASE_API_SECRET_KEY>
+
+PORT=<PORT>
+DEBUG=<bolean>
+
+FRONTEND_ENDPOINT=<FRONTEND_ENDPOINT>
+EOF
+```
+
 ### Commands
 
 ```sh
@@ -20,18 +35,7 @@ pip3 freeze > requirements.txt
 python3 app.py
 ```
 
-### Environment
 
-Add `.env` file:
-```sh
-SUPABASE_URL=https://<SUPABASE_PROJECT_ID>.supabase.co
-SUPABASE_KEY=<SUPABASE_API_SECRET_KEY>
-
-PORT=<PORT>
-DEBUG=<boolean>
-
-FRONTEND_ENDPOINT=<FRONTEND_ENDPOINT>
-```
 
 ### Supabase
 

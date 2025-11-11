@@ -7,7 +7,7 @@ import {
 } from "./ui/dialog";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { MapPin, Check, Calendar, Tag, Mail, Phone } from "lucide-react";
+import { MapPin, Check, Calendar, Tag, Mail } from "lucide-react";
 import { type Item } from "./ItemCard";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
@@ -26,7 +26,7 @@ export function ItemDetailsDialog({
 
   const handleAction = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:5000/listings/${item.id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/listings/${item.uuid}`, {
         method: "DELETE",
       });
 
@@ -34,7 +34,7 @@ export function ItemDetailsDialog({
         throw new Error(`Failed to delete item: ${response.statusText}`);
       }
 
-      console.log(`Anzeige ${item.id} erfolgreich gelöscht.`);
+      console.log(`Anzeige ${item.uuid} erfolgreich gelöscht.`);
 
       onClose();
     } catch (error) {
@@ -82,7 +82,7 @@ export function ItemDetailsDialog({
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-gray-500" />
                 <div>
-                  <p className="text-sm text-gray-500">room</p>
+                  <p className="text-sm text-gray-500">Room</p>
                   <p>{item.room}</p>
                 </div>
               </div>
@@ -90,7 +90,7 @@ export function ItemDetailsDialog({
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4 text-gray-500" />
                 <div>
-                  <p className="text-sm text-gray-500">created_at</p>
+                  <p className="text-sm text-gray-500">Date</p>
                   <p>{item.created_at}</p>
                 </div>
               </div>
@@ -108,8 +108,9 @@ export function ItemDetailsDialog({
                 <Check className="w-4 h-4 mr-2" />
                 {item.type === "lost" ? "Return" : "Collect"}
               </Button>
-              <Button asChild variant="outline" className="flex-1">
+              <Button disabled={!item.contact_email} variant="outline" className="flex-1">
                 <a
+                  className="flex items-center"
                   href={`mailto:${
                     item.contact_email
                   }?subject=${encodeURIComponent(
