@@ -141,6 +141,19 @@ The tests cover:
 These tests run **without starting a real server** and execute directly against the Flask application.
 </details> 
 
+<details>
+  <summary><strong>Test output</strong></summary>
+
+The test output can be seen by looking into the fundus-api-tests-container logs using:
+
+```bash
+docker logs fundus-api-tests-container
+```
+**Example output**
+![example output](TestOutput.png)
+</details> 
+
+
 
 ## Usage Guide
 
