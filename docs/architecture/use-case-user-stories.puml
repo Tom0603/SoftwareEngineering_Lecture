@@ -1,49 +1,60 @@
 @startuml
-
 left to right direction
 
-actor "Nutzer:in" as stud
-actor "Entwickler:in" as dev
+' Actors
+actor "Nutzer:in" as user
+actor "Server" as server
 actor "Logging" as log
-actor "Benachrichtigungsdienst" as notif
 
-package "Lost & Found System" {
-  usecase "Verlustmeldung anonym aufgeben" as UC1
-  usecase "Neue Fundmeldung anlegen" as UC2
-  usecase "Informationen eingeben" as UC3
-  usecase "Meldung speichern" as UC4
-  usecase "Meldung veröffentlichen" as UC5
-  usecase "Eingaben validieren (Client)" as UC6
-  usecase "Eingaben validieren (Server)" as UC7
-  usecase "Verständliche Fehlermeldung anzeigen" as UC8
-  usecase "Exception abfangen & maskieren" as UC9
-  usecase "Fehler protokollieren/alerten" as UC10
-  usecase "Benachrichtigungspräferenzen setzen" as UC11
-  usecase "Matching prüfen" as UC12
-  usecase "Benachrichtigung generieren & senden" as UC13
-  usecase "Benachrichtigung empfangen & interagieren" as UC14
+' System boundary
+rectangle "Lost & Found System" {
+
+  ' Core use cases
+  usecase "Verlustmeldung erstellen" as UC_Lost
+  usecase "Fundmeldung erstellen" as UC_Found
+  usecase "Informationen eingeben\n(Titel, Beschreibung, Raum, Kategorie, Bild)" as UC_Info
+  usecase "Eingaben validieren" as UC_Validate
+  usecase "Fehlerhafte Eingaben anzeigen" as UC_ShowErrors
+
+  usecase "Eingabe auf Duplikate prüfen" as UC_DupCheck
+  usecase "Mögliche Duplikate anzeigen" as UC_ShowDup
+  usecase "Anzeige veröffentlichen" as UC_Publish
+  usecase "Anzeige verwerfen" as UC_Discard
+
+  usecase "Eintrag als abgeholt markieren" as UC_Pickup
+  usecase "Eintrag löschen" as UC_Delete
+  usecase "Einträge durchsuchen" as UC_Search
+
 }
 
-stud --> UC1
-stud --> UC2
-stud --> UC11
+' User flows
+user --> UC_Lost
+user --> UC_Found
 
-UC1 --> UC3
-UC2 --> UC3
-UC3 --> UC6
-UC6 --> UC7
-UC7 --> UC4
-UC4 --> UC5
-UC5 --> UC12
+UC_Lost --> UC_Info
+UC_Found --> UC_Info
 
-UC12 --> UC13
-UC13 --> notif
-notif --> UC14
-UC14 --> stud
-UC7 --> UC8
-UC7 --> UC9
-UC9 --> UC10
-UC10 --> log
-UC10 --> dev
+UC_Info --> UC_Validate
 
+' Validation results
+UC_Validate --> UC_ShowErrors : ungültige Eingabe
+UC_Validate --> UC_DupCheck : gültige Eingabe
+
+' Duplicate logic
+UC_DupCheck --> UC_Publish : keine Duplikate gefunden
+UC_DupCheck --> UC_ShowDup : mögliche Duplikate gefunden
+
+UC_ShowDup --> UC_Discard : Anzeige verwerfen
+UC_ShowDup --> UC_Publish : Force Publish
+
+' Pickup flow
+user --> UC_Pickup
+UC_Pickup --> UC_Delete
+UC_Delete --> log : Löschvorgang protokollieren
+
+' Search
+user --> UC_Search
+
+' Server automated cleanup
+server --> UC_Delete : wenn älter als 14 Tage
 @enduml
