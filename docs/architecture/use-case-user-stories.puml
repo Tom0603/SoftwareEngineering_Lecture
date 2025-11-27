@@ -13,7 +13,7 @@ rectangle "Lost & Found System" {
   usecase "Verlustmeldung erstellen" as UC_Lost
   usecase "Fundmeldung erstellen" as UC_Found
   usecase "Informationen eingeben\n(Titel, Beschreibung, Raum, Kategorie, Bild)" as UC_Info
-  usecase "Eingaben validieren" as UC_Validate
+  usecase "Eingaben validieren (serverseitig)" as UC_Validate
   usecase "Fehlerhafte Eingaben anzeigen" as UC_ShowErrors
 
   usecase "Eingabe auf Duplikate prüfen" as UC_DupCheck

@@ -1,39 +1,84 @@
 @startuml
-title Aktivitätsdiagramm: Anonyme Meldung eines verlorenen Gegenstands
+title Activity Diagram: Lost & Found Platform
 
 start
 
-:App/Webseite öffnen;
-:Option "Verloren melden" auswählen;
+:Open Fundus website;
 
-fork
-  :Ort auswählen oder eingeben;
-fork again
-  :Zeitpunkt des Verlusts wählen;
-fork again
-  :Beschreibung (Text) verfassen;
-fork again
-  note right: Optional
-  :Foto aufnehmen oder hochladen;
-end fork
+' ======= MAIN DECISION: WHAT DOES USER WANT? =======
+if (What does the user want to do?) then (Report lost item)
 
-:Angaben prüfen (Zusammenfassung anzeigen);
+  ' ======= LOST ITEM REPORT FLOW =======
+  :Select 'Report Lost Item';
 
-if (Alle Pflichtangaben gemacht?) then (ja)
-  :Meldung absenden;
-  note right: Meldung wird anonym gespeichert
-else (nein)
-  :Hinweis: Fehlende Pflichtfelder;
-  :Zurück zur Eingabe;
+  repeat
+
+    fork
+      :Select location;
+    fork again
+      :Choose date of loss/found;
+    fork again
+      :Provide item description (text);
+    fork again
+      note right: Optional
+      :Take or upload a photo;
+    fork again
+      note right: Optional
+      :Add email address;
+    end fork
+
+  repeat while (All required information provided?) is (no) not (yes)
+
+  :Check for duplicates;
+
+  if (Duplicates found?) then (yes)
+    :Show possible duplicates;
+
+    if (User forces publish?) then (yes)
+      :Force publish;
+    else (no)
+      :User discards report;
+      stop
+    endif
+
+  else (no)
+    :Publish;
+  endif
+
+  :Create database entry;
+  :Display report in "Lost & Found" list;
+
+  stop
+
+
+else (Browse existing reports)
+
+  ' ======= BROWSING FLOW =======
+  :Display all reports;
+
+  if (User applies filters?) then (yes)
+    :Apply selected filters (category, location, etc.);
+  else (no)
+    :Show unfiltered list;
+  endif
+
+  :User selects a report;
+  :Display report details;
+
+  ' ======= CONTACT OR MARK AS COLLECTED =======
+  if (Creator provided email?) then (yes)
+    if (User clicks 'Contact') then (clicked)
+      :Open email client with recipient pre-filled;
+    endif
+  endif
+
+  if (User clicks 'Return') then (yes)
+    :Delete report from database;
+    :Remove from list;
+  else (no)
+  endif
+
 endif
-
-:Datenbank-Eintrag erzeugen;
-
-fork
-  :Anzeige in "Gefunden/Verloren"-Liste;
-fork again
-  :Benachrichtigung an Fundbüro/System;
-end fork
 
 stop
 @enduml
