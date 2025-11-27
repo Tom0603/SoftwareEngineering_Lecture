@@ -5,6 +5,8 @@ Fundus helps students and staff report found items or search for lost belongings
 
 If you find something, you can upload a picture and briefly describe what you found and where. All reports are visible to everyone and can be searched at any time. A clear search function allows you to quickly discover relevant entries – either by category or keyword.
 
+To keep the platform organized, Fundus automatically checks new posts for possible duplicates. If your submission looks similar to an existing entry from the same room and category, you’ll be shown any matching items before publishing. You can then review them and decide whether to cancel or submit your post anyway.
+
 Once an item has been picked up, the report can be marked accordingly, and it will automatically disappear from the overview. Additionally, entries older than two weeks are deleted to keep the platform clean and up-to-date.
 Thanks to a clean, responsive interface, Fundus works smoothly on both laptops and smartphones – ideal whether you're on the go or directly on campus.
 
@@ -251,11 +253,15 @@ Format of base64 image: `data:image/png;base64,...`
 <details>
 <summary>MVP</summary>
 <br>
-The Minimum Viable Product (MVP) focuses on core functionality that ensures direct value for users. The main feature is the ability to quickly and easily report found items online. Users can upload an image and provide a title, description, and location. All listings are publicly visible and searchable via category or keyword. If an item is retrieved, the listing can be marked accordingly so it disappears. To maintain clarity, all listings are automatically removed after two weeks.
+The Minimum Viable Product (MVP) focuses on core functionality that ensures direct value for users. The main feature is the ability to quickly and easily report found items online. Users can upload an image and provide a title, description, and location. All listings are publicly visible and searchable via category or keyword. 
+
+Before a new item is published, the system checks for possible duplicates based on room, category, and text similarity. If matches are found, they are shown to the user, who can cancel or publish anyway.
+
+If an item is retrieved, the listing can be marked accordingly so it disappears. To maintain clarity, all listings are automatically removed after two weeks.
 
 The application is designed for simplicity and can be used without registration. A clean, responsive interface ensures smooth usability on both desktops and mobile devices. The search function must return results fast, enabling users to find relevant listings within seconds.
 
-Thus, the MVP covers the essential flow: Report – Search – Retrieve. Additional features such as user accounts, notifications, duplicate detection, or location maps may be added in later development stages.
+Thus, the MVP covers the essential flow: Report – Search – Retrieve. Additional features such as user accounts, notifications or location maps may be added in later development stages.
 <br>
 
 </details>

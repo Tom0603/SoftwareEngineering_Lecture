@@ -5,6 +5,8 @@ import base64
 from supabase import create_client, Client
 from flask import Flask, request
 from flask_cors import CORS
+from rapidfuzz.fuzz import ratio
+
 
 from apscheduler.schedulers.background import BackgroundScheduler
 
@@ -19,6 +21,47 @@ supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 app: Flask = Flask(__name__)
 CORS(app, origins=[FRONTEND_ENDPOINT])
+
+# Synonym dictionary for duplicate detection
+SYNONYMS = {
+    # Electronics
+    "handy": ["smartphone", "telefon", "iphone", "android"],
+    "smartphone": ["handy", "telefon"],
+    "laptop": ["notebook", "rechner"],
+    "tablet": ["ipad"],
+    "kopfhörer": ["ohrhörer", "stöpsel"],
+    "ladekabel": ["ladegerät", "netzteil"],
+
+    # Bags & Luggage
+    "geldbeutel": ["portemonnaie", "börse", "wallet"],
+    "tasche": ["handtasche", "beutel"],
+
+    # Clothing
+    "jacke": ["mantel"],
+    "schal": ["tuch"],
+    "mütze": ["kappe"],
+    "schuhe": ["sneaker"],
+
+    # Accessories
+    "brille": ["lesebrille", "sonnenbrille"],
+    "sonnenbrille": ["brille"],
+    "uhr": ["armbanduhr"],
+
+    # Documents
+    "ausweis": ["studentenausweis", "id"],
+    "unterlagen": ["dokumente", "papiere"],
+    "notizbuch": ["heft", "block"],
+
+    # Jewelry
+    "kette": ["halskette"],
+
+    # Keys
+    "schlüssel": ["schlüsselbund"],
+
+    # Others
+    "stift": ["kugelschreiber", "kuli"],
+    "flasche": ["trinkflasche"]
+}
 
 
 @app.get("/listings")
@@ -139,9 +182,31 @@ def create_listing():
     """
     POST /listings
     
-    Create a new record in the "listings" table and optionally upload a PNG image to storage.
-    `
-    Request
+    
+    Creates a new listing entry and optionally uploads an associated PNG image.
+    Before insertion, the API checks for potential duplicates unless the request
+    is forced via the query parameter `?force=true`.
+
+    Duplicate Detection
+    -------------------
+    A listing is considered a potential duplicate if:
+
+    - The **room** is identical, AND
+    - The **category** is identical, AND
+    - EITHER:
+        • The title similarity (Levenshtein ratio) > 0.7, OR
+        • The normalized and synonym-expanded word sets share at least one common term.
+
+    If duplicates are detected and `force=true` is not provided,
+    the operation is aborted and a 409 response is returned.
+
+    Query Parameters
+    ----------------
+    force : bool (optional)
+        - If set to true, skips the duplicate check.
+        Example: POST /listings?force=true
+
+    Request Body (application/json)
     -------
     JSON body (application/json)
     {
@@ -168,6 +233,21 @@ def create_listing():
         "category": (str),
         "contact_email": (str | null)
     }
+
+    400 Bad Request:
+    {
+        "error": "Missing required fields"
+    }
+    OR
+    {
+        "error": "Error while trying to add to database"
+    }
+
+    409 Conflict – Duplicate detected:
+    {
+        "duplicate": true,
+        "matches": [ ... existing listings ... ]
+    }
     """
     
     data_body: dict = request.get_json()
@@ -175,7 +255,8 @@ def create_listing():
     type: str | None = data_body.get("type")
 
     created_at: str | None = data_body.get("created_at")
-    if created_at: created_at: str | None = datetime.strptime(created_at, "%Y-%m-%d").isoformat()
+    if created_at:
+        created_at = datetime.strptime(created_at, "%Y-%m-%d").isoformat()
     
     title: str | None = data_body.get("title")
     description: str | None = data_body.get("description")
@@ -186,7 +267,31 @@ def create_listing():
 
     if not all([type, created_at, title, description, room, category]):
         return {"error": "Missing required fields"}, 400
+    
+    
+    # duplikates check
+    # if force query param is not set to true, check for potential duplicates. If any found, stop execution and return them.
+    force = request.args.get("force") == "true"
 
+    if not force:
+        # get all existing listings
+        existing = supabase.table("listings").select("*").execute().data
+
+        duplicates = []
+        # check for potential duplicates
+        for ex in existing:
+            if is_potential_duplicate(data_body, ex):
+                duplicates.append(ex)
+
+        if duplicates:
+            # stop execution and return found duplicates
+            return {
+                "duplicate": True,
+                "matches": duplicates
+            }, 409
+        
+        
+    # try publishing new listing
     try:
         # Insert new listing
         response_table = (
@@ -220,6 +325,52 @@ def create_listing():
         return {"error": "Error while trying to upload image to database"}, 400
 
     return new_listing, 201
+
+
+# helpers for duplicate detection
+# checks if two titles are similar enough to be considered duplicates
+# using Levenshtein distance and word matching with synonyms
+def is_potential_duplicate(new, existing):
+
+    # Exact match on room and category required
+    if new.get("room") != existing.get("room"):
+        return False
+    if new.get("category") != existing.get("category"):
+        return False
+
+    # check Levenshtein ratio between titles
+    score = ratio(new["title"].lower(), existing["title"].lower())
+
+    # check wether similarity score is above threshold
+    if score > 0.7:
+        return True
+
+    # compare words in titles with synonyms
+    new_words = expand_synonyms(normalize_words(new["title"]))
+    ex_words = expand_synonyms(normalize_words(existing["title"]))
+
+    if new_words.intersection(ex_words):
+        return True
+
+    return False
+
+
+# helperfunktions for duplicate detection
+# split text into words and normalize them (lowercase)
+def normalize_words(text: str):
+    return [w.lower() for w in text.split()]
+
+
+# helperfunktions for duplicate detection
+# adds synonyms to a set of words using a predefined synonym dictionary
+# this helps to catch duplicates that use different words with similar meanings
+def expand_synonyms(words):
+    expanded = set(words)
+    for w in words:
+        if w in SYNONYMS:
+            expanded.update(SYNONYMS[w])
+    return expanded
+
 
 
 @app.delete("/listings/<uuid>")
