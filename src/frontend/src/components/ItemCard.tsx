@@ -31,7 +31,7 @@ export function ItemCard({ item, onViewDetails }: ItemCardProps) {
         <ImageWithFallback
           src={item.b64_image}
           alt={item.title}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-contain"
         />
       </div>
       <CardContent className="p-4">
