@@ -150,7 +150,7 @@ The test output can be seen by looking into the fundus-api-tests-container logs 
 docker logs fundus-api-tests-container
 ```
 **Example output**
-![example output](TestOutput.png)
+![example output](img/TestOutput.png)
 </details> 
 
 
