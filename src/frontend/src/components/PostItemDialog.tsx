@@ -119,6 +119,8 @@ export function PostItemDialog({ open, onClose, type }: PostItemDialogProps) {
     setImagePreview(null);
 
     onClose();
+    window.location.reload();
+
   };
 
   return (
