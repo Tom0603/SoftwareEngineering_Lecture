@@ -44,3 +44,6 @@ venv
 # Environment variable files
 .env*
 */.env*
+
+# Node
+node_modules/
