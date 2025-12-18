@@ -6,6 +6,17 @@ __MACOSX/
 Icon[
 ]
 
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
 # Thumbnails
 ._*
 
@@ -24,3 +35,15 @@ Icon[
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Python
+__pycache__
+.pytest_cache
+venv
+
+# Environment variable files
+.env*
+*/.env*
+
+# Node
+node_modules/
